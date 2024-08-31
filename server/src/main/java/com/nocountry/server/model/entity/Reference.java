@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 
 @Entity
-@Table(name = "references")
+@Table(name = "user_references")
 public class Reference {
 
     @Id
