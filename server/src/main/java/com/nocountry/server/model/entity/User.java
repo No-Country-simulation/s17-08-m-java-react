@@ -1,12 +1,14 @@
 package com.nocountry.server.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
-@Data
-@Table(name = "usuario")
+@Getter
+@Setter
+@Table(name = "usuarios")
 public class User {
 
     @Id

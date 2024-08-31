@@ -4,28 +4,34 @@ import com.nocountry.server.model.dto.ProfessionalDto;
 import com.nocountry.server.model.entity.Professional;
 import com.nocountry.server.repository.ProfessionalRepository;
 import com.nocountry.server.service.IProfessionalService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProfessionalService implements IProfessionalService {
 
-    @Autowired
-    private ProfessionalRepository professionaRepo;
+    private final ProfessionalRepository professionalRepo;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    private final ProfessionalRepository professionalRepository;
 
     @Override
     public Professional findById(Long id) {
-        return professionaRepo.findById(id).get();
+        Optional<Professional> professional =  professionalRepo.findById(id);
+        if(professional.isPresent()){
+            return professional.get();
+        }
+        return null;
     }
 
     @Override
     public List<Professional> getAllProfessional() {
-        return professionaRepo.findAll();
+        return professionalRepo.findAll();
     }
 
     @Override
@@ -39,22 +45,39 @@ public class ProfessionalService implements IProfessionalService {
                 userService.findById(professionalDto.getUserId())
         );
 
-        professionaRepo.save(professional);
+        professionalRepo.save(professional);
     }
 
     @Override
-    public void updateProfessional(ProfessionalDto professionalDto) {
-        Professional professional = new Professional();
+    public Professional updateProfessional(ProfessionalDto professionalDto, Long id) {
+        if (professionalRepository.existsById(id)){
+            Professional professional = findById(id);
 
-        professional.setAvailavility(professionalDto.getAvailavility());
-        professional.setDescription(professionalDto.getDescription());
-        professional.setExperience(professionalDto.getExperience());
+            professional.setAvailavility(professionalDto.getAvailavility());
+            professional.setDescription(professionalDto.getDescription());
+            professional.setExperience(professionalDto.getExperience());
 
-        professionaRepo.save(professional);
+
+
+            return professionalRepo.save(professional);
+            //professional updated
+        }
+
+        //the professional doesn't exists
+        return null;
+
     }
 
     @Override
-    public void deleteProfessional(Long id) {
-        professionaRepo.deleteById(id);
+    public boolean deleteProfessional(Long id) {
+        if(professionalRepo.existsById(id)){
+            professionalRepo.deleteById(id);
+            return true;
+        }
+        //the professional doesn't exists
+            return false;
+
     }
+
+
 }

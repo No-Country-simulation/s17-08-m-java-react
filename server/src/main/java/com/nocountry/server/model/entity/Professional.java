@@ -2,10 +2,15 @@ package com.nocountry.server.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Table
 @Entity
+@NoArgsConstructor
 public class Professional {
 
     @Id
@@ -21,4 +26,11 @@ public class Professional {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Professional(String experience, String description, User user, String availavility) {
+        this.experience = experience;
+        this.description = description;
+        this.user = user;
+        this.availavility = availavility;
+    }
 }
