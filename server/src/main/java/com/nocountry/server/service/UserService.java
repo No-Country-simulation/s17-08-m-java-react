@@ -58,6 +58,6 @@ public class UserService implements IUserService{
 
     @Override
     public void deleteUser(Long id) {
-
+        repository.deleteById(id);
     }
 }
