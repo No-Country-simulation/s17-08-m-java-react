@@ -25,18 +25,18 @@ public class UserController {
         try {
             User user = service.findById(id);
             log.info("Successfully retrieved user with id: {}", id);
-            return new ResponseEntity<User>(user, HttpStatus.OK);
+            return new ResponseEntity<>(user, HttpStatus.OK);
 
         } catch (UserNotFoundException ex) {
             log.error("User not found, incorrect Id: {}", id);
-            return new ResponseEntity<String>("User not Found with that id", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("User not Found with that id", HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("users")
     public ResponseEntity<?> listUsers(){
         List<User> list= service.getAllUser();
-        return new ResponseEntity<List<User>>(list, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
 
    }
 
@@ -44,11 +44,11 @@ public class UserController {
     public ResponseEntity<?> createUser(@RequestBody UserDto dto) {
         if (service.createUser(dto)) {
             log.info("User Created succesfully with the email : {}", dto.getEmail());
-            return new ResponseEntity<String>("User created successfully", HttpStatus.OK);
+            return new ResponseEntity<>("User created successfully", HttpStatus.OK);
         }
 
         log.error("User already exists with the email: {}",dto.getEmail());
-        return new ResponseEntity<String>("the user with that email already exists", HttpStatus.BAD_REQUEST );
+        return new ResponseEntity<>("the user with that email already exists", HttpStatus.BAD_REQUEST );
 
     }
 
@@ -57,11 +57,11 @@ public class UserController {
         User user = service.updateUser(dto, id);
         if (user != null){
             log.info("The user was updated correctly using the id: {}", id);
-            return new ResponseEntity<User>(user, HttpStatus.OK);
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }
         //in other case
         log.error("The user with doesn't exists with the id {}:", id);
-        return new ResponseEntity<String>("The user with doesn't exists with the id " + id, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("The user with doesn't exists with the id " + id, HttpStatus.BAD_REQUEST);
 
     }
 
@@ -69,10 +69,10 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable Long id){
         if(service.deleteUser(id)){
             log.info("User deleted with id: {}", id);
-            return new ResponseEntity<String>("User deleted correclty", HttpStatus.OK);
+            return new ResponseEntity<>("User deleted correclty", HttpStatus.OK);
         }
         log.error("The user with doesn't exists with the id {}", id);
-        return new ResponseEntity<String>("Error deleting the user, doesn't exists any with the id: " + id, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Error deleting the user, doesn't exists any with the id: " + id, HttpStatus.BAD_REQUEST);
     }
 
 }

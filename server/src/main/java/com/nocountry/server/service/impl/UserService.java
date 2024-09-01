@@ -6,7 +6,6 @@ import com.nocountry.server.model.entity.User;
 import com.nocountry.server.repository.UserRepository;
 import com.nocountry.server.service.IUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
