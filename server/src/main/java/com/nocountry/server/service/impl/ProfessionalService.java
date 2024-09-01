@@ -1,16 +1,16 @@
-package com.nocountry.server.service;
+package com.nocountry.server.service.impl;
 
 import com.nocountry.server.model.dto.ProfessionalDto;
 import com.nocountry.server.model.entity.Professional;
 import com.nocountry.server.repository.ProfessionalRepository;
-import com.nocountry.server.repository.UserRepository;
+import com.nocountry.server.service.IProfessionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProfessionalService implements IProfessionalService{
+public class ProfessionalService implements IProfessionalService {
 
     @Autowired
     private ProfessionalRepository professionaRepo;
