@@ -9,8 +9,6 @@ import java.util.List;
 
 @Getter
 @Setter
-
-
 @Data
 @Table
 @Entity
