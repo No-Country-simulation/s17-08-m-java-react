@@ -7,14 +7,13 @@ import com.nocountry.server.service.impl.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/arregloYa/v1/professional/")
+@RequestMapping("/arregloYa/v1/")
 @RequiredArgsConstructor
 
 public class ProfessionalController {
@@ -31,7 +30,7 @@ public class ProfessionalController {
 
     @PutMapping("professional/{id}")
     public ResponseEntity<?> updateProfessional(@RequestBody @Valid ProfessionalDto dto, @RequestParam Long id){
-        Professional professionalUpdated = professionalService.updateProfessional(dto, id)
+        Professional professionalUpdated = professionalService.updateProfessional(dto, id);
 
         if(professionalUpdated != null){
             return new ResponseEntity<Professional>(professionalUpdated, HttpStatus.OK);
