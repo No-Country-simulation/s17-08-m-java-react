@@ -5,9 +5,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @Getter
 @Setter
+
+
+@Data
 @Table
 @Entity
 @NoArgsConstructor
@@ -26,6 +30,9 @@ public class Professional {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SocialNetworks> socialNetworks; // añadí la relación no a muchos hacia SocialNetworks
 
     public Professional(String experience, String description, User user, String availavility) {
         this.experience = experience;
