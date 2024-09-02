@@ -1,7 +1,6 @@
 package com.nocountry.server.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Data
+
 @Table
 @Entity
 @NoArgsConstructor
@@ -32,10 +31,9 @@ public class Professional {
     @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SocialNetworks> socialNetworks; // añadí la relación no a muchos hacia SocialNetworks
 
-    public Professional(String experience, String description, User user, String availavility) {
-        this.experience = experience;
-        this.description = description;
-        this.user = user;
-        this.availavility = availavility;
-    }
+    @ManyToMany
+    @JoinTable(name = "professional_category",
+            joinColumns = @JoinColumn( name= "professional_id"),
+            inverseJoinColumns = @JoinColumn( name = "category_id"))
+    private List<Category> categories;
 }

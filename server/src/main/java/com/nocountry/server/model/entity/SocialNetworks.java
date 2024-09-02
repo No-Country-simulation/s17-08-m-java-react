@@ -1,5 +1,4 @@
 package com.nocountry.server.model.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,7 +7,6 @@ import lombok.Data;
 @Table
 @Entity
 public class SocialNetworks {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

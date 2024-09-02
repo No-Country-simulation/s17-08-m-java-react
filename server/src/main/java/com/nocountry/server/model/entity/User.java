@@ -35,7 +35,7 @@ public class User {
     @Column(name = "account_locked")
     private boolean accountLocked;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "professional_id")
     private Professional professional;
 
