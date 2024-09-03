@@ -11,10 +11,10 @@ public interface IUserService {
 
     List<User> getAllUser();
 
-    void createUser(UserDto userDto);
+    boolean createUser(UserDto userDto);
 
-    void updateUser(UserDto userDto);
+    User updateUser(UserDto userDto, Long id);
 
-    void deleteUser(Long id);
+    boolean deleteUser(Long id);
 
 }

@@ -1,12 +1,14 @@
 package com.nocountry.server.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
-@Data
-@Table(name = "usuario")
+@Getter
+@Setter
+@Table(name = "usuarios")
 public class User {
 
     @Id
@@ -33,7 +35,7 @@ public class User {
     @Column(name = "account_locked")
     private boolean accountLocked;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "professional_id")
     private Professional professional;
 

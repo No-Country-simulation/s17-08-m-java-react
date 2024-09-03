@@ -1,11 +1,17 @@
 package com.nocountry.server.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
+
 @Table
 @Entity
+@NoArgsConstructor
 public class Professional {
 
     @Id
@@ -21,4 +27,13 @@ public class Professional {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SocialNetworks> socialNetworks; // añadí la relación no a muchos hacia SocialNetworks
+
+    @ManyToMany
+    @JoinTable(name = "professional_category",
+            joinColumns = @JoinColumn( name= "professional_id"),
+            inverseJoinColumns = @JoinColumn( name = "category_id"))
+    private List<Category> categories;
 }
