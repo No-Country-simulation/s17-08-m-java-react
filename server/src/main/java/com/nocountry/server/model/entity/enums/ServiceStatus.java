@@ -1,7 +1,8 @@
 package com.nocountry.server.model.entity.enums;
 
 public enum ServiceStatus {
-    ACTIVE,
+    STARTED,
+    PAUSED,
     CANCELLED,
-    FINISHED
+    COMPLETED
 }

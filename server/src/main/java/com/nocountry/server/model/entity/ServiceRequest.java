@@ -1,8 +1,7 @@
 package com.nocountry.server.model.entity;
 
 import com.nocountry.server.model.entity.enums.ServiceStatus;
-import com.nocountry.server.model.entity.state.ServiceRequestState;
-import com.nocountry.server.model.entity.state.StartedState;
+import com.nocountry.server.model.entity.state.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,22 +35,20 @@ public class ServiceRequest {
     @JoinColumn(name ="professional_id")
     private Professional professional;
 
-    //by the moment it won't be persisted
+    //this field doesn't need to be persisted
     @Transient
     private ServiceRequestState state;
 
     public ServiceRequest() {
         this.state = new StartedState();
     }
-
+    //----------------------------------------state pattern applied----------------------------------
     public  void completeRequest(){
         state.completeRequest(this);
     }
-
     public void cancelRequest(){
         state.cancelRequest(this);
     }
-
     public void pauseRequest(){
         state.pauseRequest(this);
     }
@@ -59,5 +56,24 @@ public class ServiceRequest {
         state.resumeRequest(this);
     }
 
+    //method to set the state obtained from the db
+    public void loadState(){
+        switch(this.getStatus()) {
+            case STARTED :
+                this.setState(new StartedState());
+                break;
 
+            case PAUSED:
+                this.setState(new PausedState());
+                break;
+
+            case CANCELLED:
+                this.setState(new CancelledState());
+                break;
+
+            case COMPLETED:
+                this.setState(new CompletedState());
+                break;
+        }
+    }
 }

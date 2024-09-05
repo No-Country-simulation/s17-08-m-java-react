@@ -5,7 +5,7 @@ import com.nocountry.server.model.entity.ServiceRequest;
 public class CompletedState implements ServiceRequestState{
     @Override
     public void completeRequest(ServiceRequest request) {
-
+        
     }
 
     @Override

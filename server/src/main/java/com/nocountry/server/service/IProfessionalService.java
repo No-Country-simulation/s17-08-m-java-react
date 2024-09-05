@@ -19,4 +19,6 @@ public interface IProfessionalService {
 
     boolean deleteProfessional(Long id);
 
+    boolean existsProfessionalById(Long id);
+
 }

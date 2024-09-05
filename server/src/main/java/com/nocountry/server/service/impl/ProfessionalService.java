@@ -1,5 +1,6 @@
 package com.nocountry.server.service.impl;
 
+import com.nocountry.server.exception.ProfessionalNotFoundException;
 import com.nocountry.server.model.dto.ProfessionalDto;
 import com.nocountry.server.model.entity.Professional;
 import com.nocountry.server.repository.ProfessionalRepository;
@@ -23,10 +24,7 @@ public class ProfessionalService implements IProfessionalService {
     @Override
     public Professional findById(Long id) {
         Optional<Professional> professional =  professionalRepo.findById(id);
-        if(professional.isPresent()){
-            return professional.get();
-        }
-        return null;
+        return professional.orElseThrow(()-> new ProfessionalNotFoundException("The professional with that id (" +id+ ") doesn't exists"));
     }
 
     @Override
@@ -77,6 +75,11 @@ public class ProfessionalService implements IProfessionalService {
         //the professional doesn't exists
             return false;
 
+    }
+
+    @Override
+    public boolean existsProfessionalById(Long id) {
+        return professionalRepository.existsById(id);
     }
 
 
