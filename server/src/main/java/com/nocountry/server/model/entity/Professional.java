@@ -36,4 +36,9 @@ public class Professional {
             joinColumns = @JoinColumn( name= "professional_id"),
             inverseJoinColumns = @JoinColumn( name = "category_id"))
     private List<Category> categories;
+
+    //fetch type 'eager' to get all works done until today
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true , fetch = FetchType.EAGER)
+    private List<ServiceRequest> requests;
+
 }

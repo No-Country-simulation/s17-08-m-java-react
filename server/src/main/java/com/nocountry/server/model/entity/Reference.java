@@ -18,4 +18,8 @@ public class Reference {
     private Long id;
     private String comment;
     private Double rating;
+
+    @OneToOne
+    @JoinColumn(name ="request_id")
+    private ServiceRequest request;
 }
