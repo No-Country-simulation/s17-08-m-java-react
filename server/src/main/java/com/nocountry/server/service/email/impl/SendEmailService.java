@@ -26,7 +26,7 @@ public class SendEmailService implements ISendEmailService {
         String token = generateAndSaveActivationToken(user);
 
         emailService.sendEmail(user.getEmail(), user.fullName(), activationURL,
-                token, "Account activation", EmailTemplate.VALIDATION_EMAIL);
+                token, "Account activation", EmailTemplate.VALIDATION_ACCOUNT);
     }
 
     private String generateAndSaveActivationToken(User user) {

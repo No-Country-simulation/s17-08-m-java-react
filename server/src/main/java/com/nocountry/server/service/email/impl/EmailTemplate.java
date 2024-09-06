@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum EmailTemplate {
 
-    VALIDATION_EMAIL("validation-email");
+    VALIDATION_ACCOUNT("validation-account");
 
     private final String templateName;
 
