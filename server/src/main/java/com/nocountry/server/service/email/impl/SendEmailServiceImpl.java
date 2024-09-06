@@ -3,6 +3,7 @@ package com.nocountry.server.service.email.impl;
 import com.nocountry.server.model.entity.Token;
 import com.nocountry.server.model.entity.User;
 import com.nocountry.server.repository.TokenRepository;
+import com.nocountry.server.service.email.IEmailService;
 import com.nocountry.server.service.email.ISendEmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,13 +13,12 @@ import java.security.SecureRandom;
 import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
-
 @Component
-public class SendEmailService implements ISendEmailService {
+public class SendEmailServiceImpl implements ISendEmailService {
 
     @Value("${spring.mailing.frontend.activation-url}")
     private String activationURL;
-    private final EmailService emailService;
+    private final IEmailService emailService;
     private final TokenRepository tokenRepository;
 
     @Override

@@ -19,7 +19,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @RequiredArgsConstructor
 
 @Component
-public class EmailService implements IEmailService {
+public class EmailServiceImpl implements IEmailService {
 
     @Value("${spring.mail.username}")
     private String appEmail;
