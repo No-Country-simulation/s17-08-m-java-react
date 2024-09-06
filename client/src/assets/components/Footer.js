@@ -18,9 +18,9 @@ function Footer() {
             <div className="mx-3 mb-8">
               <h3 className="font-bold text-xl text-white mb-5">Aviso Legal</h3>
               <ul>
-                <li><a href="#" className="footer-links">Políticas de privacidad</a></li>
-                <li><a href="#" className="footer-links">Configuración de cookies</a></li>
-                <li><a href="#" className="footer-links">Términos y condiciones</a></li>
+                <li><a className="footer-links">Políticas de privacidad</a></li>
+                <li><a className="footer-links">Configuración de cookies</a></li>
+                <li><a className="footer-links">Términos y condiciones</a></li>
               </ul>
             </div>
           </div>
@@ -28,8 +28,8 @@ function Footer() {
             <div className="mx-3 mb-8">
               <h3 className="font-bold text-xl text-white mb-5">Nosotros</h3>
               <ul>
-                <li><a href="#" className="footer-links">Cómo Funciona</a></li>
-                <li><a href="#" className="footer-links">Preguntas Frecuentes (FAQs)</a></li>
+                <li><a  className="footer-links">Cómo Funciona</a></li>
+                <li><a  className="footer-links">Preguntas Frecuentes (FAQs)</a></li>
               </ul>
             </div>
           </div>
@@ -38,7 +38,7 @@ function Footer() {
               <h3 className="font-bold text-xl text-white mb-5">Encontranos  tambien en</h3>
               <ul className="social-icons flex justify-start">
                 <li className="mx-2">
-                  <a href="#" className="footer-icon hover:bg-indigo-500">
+                  <a className="footer-icon hover:bg-indigo-500">
                     <i className="lni lni-facebook-original" aria-hidden="true"></i>
                   </a>
                 </li>

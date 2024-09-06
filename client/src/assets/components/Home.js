@@ -12,7 +12,7 @@ function Home() {
               <a href="#" rel="nofollow" className="btn">Conecta con tu Experto</a>
             </div>
             <div className="text-center mb-10 wow fadeInUp animated" data-wow-delay="1.2s" style={{ visibility: 'visible', '-webkit-animation-delay': '1.2s', '-moz-animation-delay': '1.2s', animationDelay: '1.2s' }}>
-              <a href="#" rel="nofollow" className="btn">Registrate como Profesional</a>
+              <a src="#" rel="nofollow" className="btn">Registrate como Profesional</a>
             </div>
           </div>
           <div className="w-full lg:w-1/2">

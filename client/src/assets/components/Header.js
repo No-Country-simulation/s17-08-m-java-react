@@ -22,10 +22,10 @@ function Header() {
                         <div className={`${isNavOpen ? 'block' : 'hidden'} lg:block top-100 left-0 mt-full bg-black z-20 px-5 py-3 w-full lg:static lg:bg-transparent lg:shadow-none duration-300`}>
                             <ul className='navbar-nav mr-auto justify-center items-center lg:flex'>
                                 <li className='nav-item'>
-                                    <Link to="#hero-area" className="page-scroll active">Nosotros</Link>
+                                    <Link to="/nosotros" className="page-scroll active">Nosotros</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link to="#services" className="page-scroll">Servicios</Link>
+                                    <Link to="/plomero" className="page-scroll">Servicios</Link>
                                 </li>
                                 <li className='nav-item'>
                                     <Link to="#feature" className="page-scroll">Promociona tu Servicio</Link>
