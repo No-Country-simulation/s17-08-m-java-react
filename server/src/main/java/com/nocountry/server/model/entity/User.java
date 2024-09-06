@@ -37,11 +37,7 @@ public class User {
     @JoinColumn(name = "professional_id")
     private Professional professional;
 
-
-
-
-
-
-
-
+    public String fullName() {
+        return firstName + " " + lastName;
+    }
 }
