@@ -76,6 +76,7 @@ public class ServiceRequestService implements IServiceRequestService {
             //request.setState();
             request.setTitle(dto.getTitle());
 
+            log.info("Service request updated, service request id: {}", id );
             return requestRepository.save(request);
 
         }catch(ProfessionalNotFoundException ex){
