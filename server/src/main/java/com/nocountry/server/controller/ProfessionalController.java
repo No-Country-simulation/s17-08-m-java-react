@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/arregloYa/v1/")
 @RequiredArgsConstructor
-
 public class ProfessionalController {
 
     private final ProfessionalService professionalService;
