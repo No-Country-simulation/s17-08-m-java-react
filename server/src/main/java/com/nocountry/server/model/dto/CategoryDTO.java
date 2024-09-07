@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class CategoryDTO {
 
-    private Long id;
+    //private Long id;
 
     @NotBlank
     private String description;

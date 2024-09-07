@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("arregloYa/v1/categories/")
 @RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @PostMapping("/create")
+    @PostMapping("create")
     public Category create(@RequestBody @Valid CategoryDTO categoryDTO) {
         return categoryService.createCategory(categoryDTO);
     }
