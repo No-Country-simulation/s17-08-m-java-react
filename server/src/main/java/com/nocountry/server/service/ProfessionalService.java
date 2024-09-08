@@ -3,7 +3,6 @@ package com.nocountry.server.service;
 import com.nocountry.server.model.dto.ProfessionalDto;
 import com.nocountry.server.model.entity.Professional;
 import com.nocountry.server.repository.ProfessionalRepository;
-import com.nocountry.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,7 @@ public class ProfessionalService implements IProfessionalService{
     public void createProfessional(ProfessionalDto professionalDto) {
         Professional professional = new Professional();
 
-        professional.setAvailavility(professionalDto.getAvailavility());
+        professional.setAvailability(professionalDto.getAvailavility());
         professional.setDescription(professionalDto.getDescription());
         professional.setExperience(professionalDto.getExperience());
         professional.setUser(
@@ -46,7 +45,7 @@ public class ProfessionalService implements IProfessionalService{
     public void updateProfessional(ProfessionalDto professionalDto) {
         Professional professional = new Professional();
 
-        professional.setAvailavility(professionalDto.getAvailavility());
+        professional.setAvailability(professionalDto.getAvailavility());
         professional.setDescription(professionalDto.getDescription());
         professional.setExperience(professionalDto.getExperience());
 
