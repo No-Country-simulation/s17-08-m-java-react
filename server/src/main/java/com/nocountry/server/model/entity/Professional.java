@@ -1,10 +1,14 @@
 package com.nocountry.server.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-@Data
-@Table
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Table(name = "professionals")
 @Entity
 public class Professional {
 
@@ -16,9 +20,9 @@ public class Professional {
 
     private String experience;
 
-    private String availavility;
+    private String availability;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private User user;
 }
