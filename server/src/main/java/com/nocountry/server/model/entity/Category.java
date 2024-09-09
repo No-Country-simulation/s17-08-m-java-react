@@ -18,7 +18,4 @@ public class Category {
     private Long id;
 
     private String description;
-
-    @ManyToMany(mappedBy = "categories")
-    private List<Professional> professionals;
 }

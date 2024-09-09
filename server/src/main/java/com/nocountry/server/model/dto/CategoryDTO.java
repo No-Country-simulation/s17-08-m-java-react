@@ -10,6 +10,6 @@ public class CategoryDTO {
 
     //private Long id;
 
-    @NotBlank
+    @NotBlank(message = "The description can't be blank")
     private String description;
 }

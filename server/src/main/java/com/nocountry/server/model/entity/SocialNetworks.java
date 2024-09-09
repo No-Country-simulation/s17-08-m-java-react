@@ -1,9 +1,11 @@
 package com.nocountry.server.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Table
 @Entity
 public class SocialNetworks {
