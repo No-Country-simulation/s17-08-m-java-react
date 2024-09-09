@@ -21,7 +21,7 @@ public class Professional {
 
     private String experience;
 
-    private String availavility;
+    private String availability;
 
     @OneToOne
     @JoinColumn(name = "user_id")
