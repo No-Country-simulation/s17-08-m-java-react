@@ -13,20 +13,20 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/arregloYa/v1/")
+@RequestMapping("/professional")
 @RequiredArgsConstructor
 public class ProfessionalController {
 
     private final ProfessionalService professionalService;
 
-    @PostMapping("professional")
+    @PostMapping("/")
     public ResponseEntity<?> createProfessional(@RequestBody @Valid ProfessionalDto dto){
         professionalService.createProfessional(dto);
 
         return new ResponseEntity<>("professional account created", HttpStatus.CREATED);
     }
 
-    @PutMapping("professional/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateProfessional(@RequestBody @Valid ProfessionalDto dto, @PathVariable Long id){
         Professional professionalUpdated = professionalService.updateProfessional(dto, id);
 
@@ -37,7 +37,7 @@ public class ProfessionalController {
         }
     }
 
-    @GetMapping("professional/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getProfessional(@PathVariable Long id){
         Professional professional = professionalService.findById(id);
         if(professional != null) {
@@ -47,7 +47,7 @@ public class ProfessionalController {
 
     }
 
-    @GetMapping("professionals")
+    @GetMapping("/")
     public ResponseEntity<?> getAllProfessionals(){
         List<Professional> professionals = professionalService.getAllProfessional();
         if(!professionals.isEmpty()){
@@ -57,7 +57,17 @@ public class ProfessionalController {
 
     }
 
-    @DeleteMapping("professional/{id}")
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<?> getProfessionalByCategory(@PathVariable Long categoryId){
+        return ResponseEntity.ok(professionalService.getProfessionalByCategory(categoryId));
+    }
+
+    @GetMapping("/{availability}")
+    public ResponseEntity<List<Professional>> getProfessionalsByAvailability(@PathVariable String availability){
+        return ResponseEntity.ok(professionalService.getProfessionalByAvailability(availability));
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProfessional(@PathVariable Long id) {
         if(professionalService.deleteProfessional(id)){
             return new ResponseEntity<>("Professional deleted", HttpStatus.OK);
