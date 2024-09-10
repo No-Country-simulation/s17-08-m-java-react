@@ -1,5 +1,9 @@
 package com.nocountry.server.config.advice;
 
+import com.nocountry.server.exception.EmailAlreadyExistException;
+import com.nocountry.server.exception.RoleInvalidException;
+import com.nocountry.server.exception.RoleNotFoundException;
+import com.nocountry.server.exception.TokenInvalidException;
 import com.nocountry.server.utils.ExceptionResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +17,26 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(TokenInvalidException.class)
+    public ResponseEntity<Object> tokenInvalidException(TokenInvalidException exception, HttpServletRequest request) {
+        return ResponseEntity.status(400).body(ExceptionResponse.create(exception, request));
+    }
+
+    @ExceptionHandler(RoleNotFoundException.class)
+    public ResponseEntity<Object> roleNotFoundException(RoleNotFoundException exception, HttpServletRequest request) {
+        return ResponseEntity.status(404).body(ExceptionResponse.create(exception, request));
+    }
+
+    @ExceptionHandler(RoleInvalidException.class)
+    public ResponseEntity<Object> roleInvalidException(RoleInvalidException exception, HttpServletRequest request) {
+        return ResponseEntity.status(400).body(ExceptionResponse.create(exception, request));
+    }
+
+    @ExceptionHandler(EmailAlreadyExistException.class)
+    public ResponseEntity<Object> emailAlreadyExistException(EmailAlreadyExistException exception, HttpServletRequest request) {
+        return ResponseEntity.status(409).body(ExceptionResponse.create(exception, request));
+    }
 
     @ExceptionHandler(MailSendException.class)
     public ResponseEntity<Object> mailSendException(MailSendException exception, HttpServletRequest request) {

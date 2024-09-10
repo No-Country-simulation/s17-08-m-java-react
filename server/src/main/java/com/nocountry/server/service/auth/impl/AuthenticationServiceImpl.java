@@ -1,5 +1,6 @@
 package com.nocountry.server.service.auth.impl;
 
+import com.nocountry.server.exception.*;
 import com.nocountry.server.mappers.IUserMapper;
 import com.nocountry.server.model.dto.auth.AuthenticationRequest;
 import com.nocountry.server.model.dto.auth.AuthenticationResponse;
@@ -70,11 +71,11 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     @Override
     public void activateAccount(String token) {
         Token savedToken = tokenRepository.findByToken(token)
-                .orElseThrow(() -> new RuntimeException("invalid token"));
+                .orElseThrow(() -> new TokenInvalidException("invalid token"));
 
         if(LocalDateTime.now().isAfter(savedToken.getExpiredAt())) {
             email.sendValidationEmail(savedToken.getUser());
-            throw new RuntimeException("Activation token has expired. A new token has been sent to your email.");
+            throw new TokenInvalidException("Activation token has expired. A new token has been sent to your email.");
         }
 
         User user = savedToken.getUser();
@@ -100,7 +101,7 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
 
     private String validateRole(String role) {
         if (!role.equalsIgnoreCase(RoleEnum.CLIENT.name()) && !role.equalsIgnoreCase(RoleEnum.PROFESSIONAL.name())) {
-            throw new RuntimeException("invalid role");
+            throw new RoleInvalidException("invalid role");
         }
         return role.toUpperCase();
     }
@@ -108,14 +109,14 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     private Set<Role> getRolesDataBaseOrThrow(List<String> roles) {
         Set<Role> userRoles = new HashSet<>(roleRepository.findRolesByRoleEnumIn(roles));
         if (userRoles.isEmpty()) {
-            throw new RuntimeException("Role not found");
+            throw new RoleNotFoundException("Role not found");
         }
         return userRoles;
     }
 
     private void existEmailThrow(UserRegistrationRequest request) {
         if (userRepository.existsByEmail(request.email())) {
-            throw new RuntimeException("Email already exists");
+            throw new EmailAlreadyExistException("Email already exists");
         }
     }
 }
