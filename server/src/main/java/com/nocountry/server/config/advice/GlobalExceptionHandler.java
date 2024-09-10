@@ -50,12 +50,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(LockedException.class)
     public ResponseEntity<Object> lockedException(LockedException exception, HttpServletRequest request) {
-        return ResponseEntity.status(401).body(ExceptionResponse.create(exception, request, "Your account is locked."));
+        return ResponseEntity.status(423).body(ExceptionResponse.create(exception, request, "Your account is locked."));
     }
 
     @ExceptionHandler(DisabledException.class)
     public ResponseEntity<Object> disabledException(DisabledException exception, HttpServletRequest request) {
-        return ResponseEntity.status(401).body(ExceptionResponse.create(exception, request, "Your account is disabled."));
+        return ResponseEntity.status(403).body(ExceptionResponse.create(exception, request, "Your account is disabled."));
     }
 
     @ExceptionHandler(Exception.class)
