@@ -1,5 +1,6 @@
 package com.nocountry.server.model.dto.auth;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -27,6 +28,7 @@ public record UserRegistrationRequest(
         @Size(max = 15, message = "Password should be 15 characters long maximum")
         String password,
 
+        @Schema(example = "CLIENT or PROFESSIONAL")
         String role
 
 ) implements Serializable {
