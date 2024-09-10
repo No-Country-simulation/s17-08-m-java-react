@@ -7,6 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProfessionalDto {
+    @NotBlank(message = "the professional id is mandatory")
+    private Long id;
 
     @NotBlank(message = "The description can't be blank")
     private String description;
