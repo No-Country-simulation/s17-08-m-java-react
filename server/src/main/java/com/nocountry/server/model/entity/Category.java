@@ -3,22 +3,18 @@ package com.nocountry.server.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+@Entity
+@Table(name = "category")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Entity
-@Table(name = "user_references")
-public class Reference {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String comment;
-    private Double rating;
 
-    @OneToOne
-    @JoinColumn(name ="request_id")
-    private ServiceRequest request;
+    private String description;
 }

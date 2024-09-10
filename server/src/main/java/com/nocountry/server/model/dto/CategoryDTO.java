@@ -6,15 +6,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProfessionalDto {
+public class CategoryDTO {
+
+    //private Long id;
 
     @NotBlank(message = "The description can't be blank")
     private String description;
-
-    private String experience;
-
-    private String availability;
-
-    @NotBlank(message = "the user id is mandatory")
-    private Long userId;
 }

@@ -3,6 +3,8 @@ package com.nocountry.server.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,4 +27,18 @@ public class Professional {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SocialNetworks> socialNetworks; // añadí la relación no a muchos hacia SocialNetworks
+
+    @ManyToMany(fetch =  FetchType.EAGER)
+    @JoinTable(name = "professional_category",
+            joinColumns = @JoinColumn( name= "professional_id"),
+            inverseJoinColumns = @JoinColumn( name = "category_id"))
+    private List<Category> categories;
+
+    //fetch type 'eager' to get all works done until today
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true , fetch = FetchType.EAGER)
+    private List<ServiceRequest> requests;
+
 }

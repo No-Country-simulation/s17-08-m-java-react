@@ -15,8 +15,10 @@ public interface IProfessionalService {
 
     void createProfessional(ProfessionalDto professionalDto);
 
-    void updateProfessional(ProfessionalDto ProfessionalDto);
+    Professional updateProfessional(ProfessionalDto ProfessionalDto,  Long id);
 
-    void deleteProfessional(Long id);
+    boolean deleteProfessional(Long id);
+
+    boolean existsProfessionalById(Long id);
 
 }
