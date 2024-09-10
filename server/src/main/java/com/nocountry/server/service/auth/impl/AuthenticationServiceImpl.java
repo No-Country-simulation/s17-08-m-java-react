@@ -6,10 +6,12 @@ import com.nocountry.server.model.dto.auth.AuthenticationResponse;
 import com.nocountry.server.model.dto.auth.UserRegistrationRequest;
 import com.nocountry.server.model.entity.Professional;
 import com.nocountry.server.model.entity.Role;
+import com.nocountry.server.model.entity.Token;
 import com.nocountry.server.model.entity.User;
 import com.nocountry.server.model.entity.enums.RoleEnum;
 import com.nocountry.server.repository.ProfessionalRepository;
 import com.nocountry.server.repository.RoleRepository;
+import com.nocountry.server.repository.TokenRepository;
 import com.nocountry.server.repository.UserRepository;
 import com.nocountry.server.service.auth.IAuthenticationService;
 import com.nocountry.server.service.email.ISendEmailService;
@@ -22,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +38,7 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     private final UserRepository userRepository;
     private final ProfessionalRepository professionalRepository;
     private final RoleRepository roleRepository;
+    private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final IUserMapper userMapper;
     private final ISendEmailService email;
@@ -61,6 +65,24 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
         user.setPassword(passwordEncoder.encode(request.password()));
         assignRolesToUser(role, user);
         email.sendValidationEmail(user);
+    }
+
+    @Override
+    public void activateAccount(String token) {
+        Token savedToken = tokenRepository.findByToken(token)
+                .orElseThrow(() -> new RuntimeException("invalid token"));
+
+        if(LocalDateTime.now().isAfter(savedToken.getExpiredAt())) {
+            email.sendValidationEmail(savedToken.getUser());
+            throw new RuntimeException("Activation token has expired. A new token has been sent to your email.");
+        }
+
+        User user = savedToken.getUser();
+        user.setEnabled(true);
+        userRepository.save(user);
+
+        savedToken.setValidatedAt(LocalDateTime.now());
+        tokenRepository.save(savedToken);
     }
 
     private void assignRolesToUser(String role, User user) {

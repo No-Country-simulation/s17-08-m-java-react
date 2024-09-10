@@ -10,4 +10,6 @@ public interface IAuthenticationService {
     AuthenticationResponse authenticate(AuthenticationRequest request);
 
     void signUp(UserRegistrationRequest request);
+
+    void activateAccount(String token);
 }
