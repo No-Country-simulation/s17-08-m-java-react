@@ -25,4 +25,10 @@ public class AuthenticationController {
         authService.signUp(request);
         return ResponseEntity.status(201).build();
     }
+
+    @PostMapping("validate-account")
+    public ResponseEntity<Void> validateAccount(@RequestParam String token) {
+        authService.activateAccount(token);
+        return ResponseEntity.ok().build();
+    }
 }
