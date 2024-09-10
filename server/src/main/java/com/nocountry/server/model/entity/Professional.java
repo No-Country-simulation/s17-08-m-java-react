@@ -8,7 +8,6 @@ import java.util.List;
 
 @Getter
 @Setter
-
 @Table
 @Entity
 @NoArgsConstructor
@@ -22,7 +21,7 @@ public class Professional {
 
     private String experience;
 
-    private String availavility;
+    private String availability;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -31,7 +30,7 @@ public class Professional {
     @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SocialNetworks> socialNetworks; // añadí la relación no a muchos hacia SocialNetworks
 
-    @ManyToMany
+    @ManyToMany(fetch =  FetchType.EAGER)
     @JoinTable(name = "professional_category",
             joinColumns = @JoinColumn( name= "professional_id"),
             inverseJoinColumns = @JoinColumn( name = "category_id"))

@@ -9,17 +9,17 @@ import lombok.Setter;
 @Setter
 public class UserDto {
 
-    @NotBlank
+    @NotBlank(message = "first name can't be blank")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "last name can't be blank")
     private String lastName;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "The email can't be blank")
+    @Email(message = "The value should be an email format")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "the password can't be blank")
     private String password;
 
     private String location;

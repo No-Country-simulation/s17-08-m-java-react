@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 public class CategoryDTO {
 
-    private Long id;
+    //private Long id;
 
-    @NotBlank
+    @NotBlank(message = "The description can't be blank")
     private String description;
 }

@@ -3,7 +3,6 @@ package com.nocountry.server.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -18,7 +17,4 @@ public class Category {
     private Long id;
 
     private String description;
-
-    @ManyToMany(mappedBy = "categories")
-    private List<Professional> professionals;
 }
