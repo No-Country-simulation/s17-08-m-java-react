@@ -70,7 +70,7 @@ public class AuthenticationController {
             responses = {
                     @ApiResponse(
                             responseCode = "202",
-                            description = "User registered successfully waiting for account validation",
+                            description = "User registered successfully, We have sent you an email to validate your account",
                             content = {@Content}
                     ),
                     @ApiResponse(
@@ -92,9 +92,9 @@ public class AuthenticationController {
     )
     @SecurityRequirements
     @PostMapping("/sign-up")
-    public ResponseEntity<Void> register(@RequestBody @Valid UserRegistrationRequest request) {
+    public ResponseEntity<String> register(@RequestBody @Valid UserRegistrationRequest request) {
         authService.signUp(request);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.accepted().body("We have sent you an email to validate your account.");
     }
 
     @Operation(
