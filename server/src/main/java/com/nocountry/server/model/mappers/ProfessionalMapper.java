@@ -12,6 +12,6 @@ public interface ProfessionalMapper {
     ProfessionalDto toDto(Professional professional);
 
     @Mapping(source = "userId", target = "user.id")
-    ProfessionalDto toEntity(ProfessionalDto professionalDto);
+    Professional toEntity(ProfessionalDto professionalDto);
 
 }
