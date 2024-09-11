@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 
 @RestController
@@ -56,15 +59,30 @@ public class ProfessionalController {
             return new ResponseEntity<>("There isn't any professional to show", HttpStatus.NO_CONTENT);
 
     }
-
-    @GetMapping("/{categoryId}")
-    public ResponseEntity<?> getProfessionalByCategory(@PathVariable Long categoryId){
-        return ResponseEntity.ok(professionalService.getProfessionalByCategory(categoryId));
+//filter by category and availability
+    @GetMapping("/professionals/category/availability/{categoryId}/{availability}")
+    public ResponseEntity<?> getProfessionalByCategoryAndAvailability(@PathVariable Long categoryId, @PathVariable String availability){
+        List<Professional> professionalsByCategory = professionalService.getProfessionalByCategory(categoryId);
+        if(availability.isBlank()){
+            return ResponseEntity.ok(professionalsByCategory);
+        }
+        List<Professional> professionalsByCategoryAvailability = professionalsByCategory.stream().filter(
+                professional -> professional.getAvailability().equalsIgnoreCase(availability)).collect(Collectors.toList());
+        
+        return ResponseEntity.ok(professionalsByCategoryAvailability);
     }
 
-    @GetMapping("/{availability}")
-    public ResponseEntity<List<Professional>> getProfessionalsByAvailability(@PathVariable String availability){
-        return ResponseEntity.ok(professionalService.getProfessionalByAvailability(availability));
+//filter by category and rating
+    @GetMapping("/professionals/category/rating/{categoryId}/{rating}")
+    public ResponseEntity<?> getProfessionalByCategoryAndRating(@PathVariable Long categoryId, @PathVariable int rating){
+        List<Professional> professionalsByCategory = professionalService.getProfessionalByCategory(categoryId);
+        if(rating > 5 || rating < 1){
+            return ResponseEntity.ok(professionalsByCategory);
+        }
+        List<Professional> professionalsByCategoryRating = professionalsByCategory.stream().filter(
+                professional -> professional.calculateAverageRating() >= rating).collect(Collectors.toList());
+
+        return ResponseEntity.ok(professionalsByCategoryRating);
     }
 
     @DeleteMapping("/{id}")
