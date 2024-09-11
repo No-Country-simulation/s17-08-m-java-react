@@ -36,7 +36,7 @@ public class ProfessionalService implements IProfessionalService {
     public void createProfessional(ProfessionalDto professionalDto) {
         Professional professional = new Professional();
 
-        professional.setAvailavility(professionalDto.getAvailavility());
+        professional.setAvailability(professionalDto.getAvailability());
         professional.setDescription(professionalDto.getDescription());
         professional.setExperience(professionalDto.getExperience());
         professional.setUser(
@@ -51,17 +51,14 @@ public class ProfessionalService implements IProfessionalService {
         if (professionalRepository.existsById(id)){
             Professional professional = findById(id);
 
-            professional.setAvailavility(professionalDto.getAvailavility());
+            professional.setAvailability(professionalDto.getAvailability());
             professional.setDescription(professionalDto.getDescription());
             professional.setExperience(professionalDto.getExperience());
 
 
 
             return professionalRepo.save(professional);
-            //professional updated
         }
-
-        //the professional doesn't exists
         return null;
 
     }
@@ -72,7 +69,6 @@ public class ProfessionalService implements IProfessionalService {
             professionalRepo.deleteById(id);
             return true;
         }
-        //the professional doesn't exists
             return false;
 
     }

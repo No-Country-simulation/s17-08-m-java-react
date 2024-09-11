@@ -1,16 +1,17 @@
 package com.nocountry.server.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.List;
 
 @Getter
 @Setter
-@Table
-@Entity
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Table(name = "professionals")
+@Entity
 public class Professional {
 
     @Id
@@ -23,7 +24,7 @@ public class Professional {
 
     private String availability;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private User user;
 
