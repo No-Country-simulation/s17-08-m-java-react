@@ -21,4 +21,8 @@ public interface IProfessionalService {
 
     boolean existsProfessionalById(Long id);
 
+    List<Professional> getProfessionalByCategory(Long categoryId);
+
+    List<Professional> getProfessionalByAvailability(String availability);
+
 }

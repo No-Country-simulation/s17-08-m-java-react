@@ -10,23 +10,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 
 @RestController
-@RequestMapping("/arregloYa/v1/")
+@RequestMapping("/professional")
 @RequiredArgsConstructor
 public class ProfessionalController {
 
     private final ProfessionalService professionalService;
 
-    @PostMapping("professional")
+    @PostMapping("/")
     public ResponseEntity<?> createProfessional(@RequestBody @Valid ProfessionalDto dto){
         professionalService.createProfessional(dto);
 
         return new ResponseEntity<>("professional account created", HttpStatus.CREATED);
     }
 
-    @PutMapping("professional/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateProfessional(@RequestBody @Valid ProfessionalDto dto, @PathVariable Long id){
         Professional professionalUpdated = professionalService.updateProfessional(dto, id);
 
@@ -37,7 +40,7 @@ public class ProfessionalController {
         }
     }
 
-    @GetMapping("professional/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getProfessional(@PathVariable Long id){
         Professional professional = professionalService.findById(id);
         if(professional != null) {
@@ -47,7 +50,7 @@ public class ProfessionalController {
 
     }
 
-    @GetMapping("professionals")
+    @GetMapping("/")
     public ResponseEntity<?> getAllProfessionals(){
         List<Professional> professionals = professionalService.getAllProfessional();
         if(!professionals.isEmpty()){
@@ -56,8 +59,33 @@ public class ProfessionalController {
             return new ResponseEntity<>("There isn't any professional to show", HttpStatus.NO_CONTENT);
 
     }
+//filter by category and availability
+    @GetMapping("/professionals/category/availability/{categoryId}/{availability}")
+    public ResponseEntity<?> getProfessionalByCategoryAndAvailability(@PathVariable Long categoryId, @PathVariable String availability){
+        List<Professional> professionalsByCategory = professionalService.getProfessionalByCategory(categoryId);
+        if(availability.isBlank()){
+            return ResponseEntity.ok(professionalsByCategory);
+        }
+        List<Professional> professionalsByCategoryAvailability = professionalsByCategory.stream().filter(
+                professional -> professional.getAvailability().equalsIgnoreCase(availability)).collect(Collectors.toList());
+        
+        return ResponseEntity.ok(professionalsByCategoryAvailability);
+    }
 
-    @DeleteMapping("professional/{id}")
+//filter by category and rating
+    @GetMapping("/professionals/category/rating/{categoryId}/{rating}")
+    public ResponseEntity<?> getProfessionalByCategoryAndRating(@PathVariable Long categoryId, @PathVariable int rating){
+        List<Professional> professionalsByCategory = professionalService.getProfessionalByCategory(categoryId);
+        if(rating > 5 || rating < 1){
+            return ResponseEntity.ok(professionalsByCategory);
+        }
+        List<Professional> professionalsByCategoryRating = professionalsByCategory.stream().filter(
+                professional -> professional.calculateAverageRating() >= rating).collect(Collectors.toList());
+
+        return ResponseEntity.ok(professionalsByCategoryRating);
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProfessional(@PathVariable Long id) {
         if(professionalService.deleteProfessional(id)){
             return new ResponseEntity<>("Professional deleted", HttpStatus.OK);

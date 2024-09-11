@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 
 @Getter@Setter
 public class ServiceRequestDto {
+    @NotBlank(message = "The service request id is mandatory")
+    private Long id;
 
     @NotBlank(message = "The title can't be blank")
     private String title;

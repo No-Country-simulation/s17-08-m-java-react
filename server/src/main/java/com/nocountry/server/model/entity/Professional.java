@@ -41,4 +41,18 @@ public class Professional {
     @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true , fetch = FetchType.EAGER)
     private List<ServiceRequest> requests;
 
+    public int calculateAverageRating(){
+        if(requests == null || requests.isEmpty()){
+            //just to set an average
+            return 3;
+        }
+        double  totalRatings = 0;
+
+        for(ServiceRequest request : requests){
+            totalRatings += request.getReference().getRating();
+        }
+
+        int average = (int) Math.round(totalRatings/requests.size());
+        return average;
+    }
 }

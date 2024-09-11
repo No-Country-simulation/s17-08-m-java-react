@@ -8,6 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDto {
+    @NotBlank(message = "the user id is mandatory")
+    private Long id;
 
     @NotBlank(message = "first name can't be blank")
     private String firstName;

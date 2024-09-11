@@ -26,7 +26,7 @@ public class ServiceRequest {
     private ServiceStatus status;
     private LocalDateTime createdAt;
 
-    @OneToOne(mappedBy = "request")
+    @OneToOne(mappedBy = "request", fetch = FetchType.EAGER)
     @JoinColumn(name = "reference_id")
     private Reference reference;
 

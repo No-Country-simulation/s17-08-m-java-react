@@ -2,6 +2,7 @@ package com.nocountry.server.service.impl;
 
 import com.nocountry.server.exception.ProfessionalNotFoundException;
 import com.nocountry.server.model.dto.ProfessionalDto;
+import com.nocountry.server.model.entity.Category;
 import com.nocountry.server.model.entity.Professional;
 import com.nocountry.server.repository.ProfessionalRepository;
 import com.nocountry.server.service.IProfessionalService;
@@ -19,7 +20,7 @@ public class ProfessionalService implements IProfessionalService {
 
     private final UserService userService;
 
-    private final ProfessionalRepository professionalRepository;
+    private final CategoryService categoryService;
 
     @Override
     public Professional findById(Long id) {
@@ -48,13 +49,12 @@ public class ProfessionalService implements IProfessionalService {
 
     @Override
     public Professional updateProfessional(ProfessionalDto professionalDto, Long id) {
-        if (professionalRepository.existsById(id)){
+        if (professionalRepo.existsById(id)){
             Professional professional = findById(id);
 
             professional.setAvailability(professionalDto.getAvailability());
             professional.setDescription(professionalDto.getDescription());
             professional.setExperience(professionalDto.getExperience());
-
 
 
             return professionalRepo.save(professional);
@@ -70,12 +70,22 @@ public class ProfessionalService implements IProfessionalService {
             return true;
         }
             return false;
-
     }
 
     @Override
     public boolean existsProfessionalById(Long id) {
-        return professionalRepository.existsById(id);
+        return professionalRepo.existsById(id);
+    }
+
+    @Override
+    public List<Professional> getProfessionalByCategory(Long categoryId) {
+        Category category = categoryService.findCategoryById(categoryId);
+        return professionalRepo.findAllByCategories(category);
+    }
+
+    @Override
+    public List<Professional> getProfessionalByAvailability(String availability) {
+        return professionalRepo.findAllByAvailability(availability);
     }
 
 
