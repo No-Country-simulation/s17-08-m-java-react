@@ -4,6 +4,7 @@ import com.nocountry.server.config.security.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,14 +32,26 @@ public class securityConfig {
                             req.requestMatchers(
                                     "/api-docs/**",
                                     "/swagger-ui/**",
-                                    "/auth/**"
-                            ).permitAll();
+                                    "/auth/**").permitAll();
+                            req.requestMatchers(HttpMethod.GET,
+                                    "/categories/**",
+                                    "/professionals/**",
+                                    "/request-services/**").permitAll();
+                            req.requestMatchers(
+                                    "/request-services/**").hasAnyRole("CLIENT", "PROFESSIONAL", "ADMIN");
+                            req.requestMatchers(HttpMethod.PUT,
+                                    "/professionals/**",
+                                    "/users/**"
+                            ).hasAnyRole("CLIENT", "PROFESSIONAL");
+                            req.requestMatchers(
+                                    "/users/**",
+                                    "/professionals/**",
+                                    "/categories/**").hasRole("ADMIN");
                             req.anyRequest().denyAll();
                         }
                 )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
     }
 }
