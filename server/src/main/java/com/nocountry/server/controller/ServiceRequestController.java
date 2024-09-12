@@ -5,21 +5,24 @@ import com.nocountry.server.exception.ServiceRequestNotFound;
 import com.nocountry.server.model.dto.ServiceRequestDto;
 import com.nocountry.server.model.entity.ServiceRequest;
 import com.nocountry.server.service.IServiceRequestService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@Tag(name = "Service Requests")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/arregloYa/v1/")
+@RequestMapping("/request-services")
 public class ServiceRequestController {
     private final IServiceRequestService service;
 
-    @PostMapping("request-service")
+    @PostMapping
     public ResponseEntity<?> createServiceRequest(@RequestBody @Valid ServiceRequestDto dto){
         if(service.createRequest(dto)){
             return new ResponseEntity<>("Service request created successfully", HttpStatus.OK);
@@ -28,7 +31,8 @@ public class ServiceRequestController {
 
     }
 
-    @GetMapping("request-service/{requestId}")
+    @SecurityRequirements
+    @GetMapping("/{requestId}")
     public ResponseEntity<?> findRequestById(@PathVariable Long id){
         try{
             ServiceRequest request = service.findRequestById(id);
@@ -38,6 +42,7 @@ public class ServiceRequestController {
         }
     }
 
+    @SecurityRequirements
     @GetMapping("requests-service-by-professional/{professionalId}")
     public ResponseEntity<?> findAllServiceRequestByProfessionalId(@PathVariable Long professionalId){
         try{
@@ -48,7 +53,7 @@ public class ServiceRequestController {
         }
     }
 
-    @PutMapping("request-service/{requestId}")
+    @PutMapping("/{requestId}")
     public ResponseEntity<?> updateRequestService(@RequestBody @Valid ServiceRequestDto dto,@PathVariable Long requestId){
         try{
             ServiceRequest request = service.updateRequest(dto, requestId);
@@ -61,7 +66,7 @@ public class ServiceRequestController {
         }
     }
 
-    @DeleteMapping("request-service/{requestId}")
+    @DeleteMapping("/{requestId}")
     public ResponseEntity<?> deleteRequestService(@PathVariable Long requestId){
         if(service.deleteRequest(requestId)){
             return new ResponseEntity<>("Service request deleted successfully", HttpStatus.OK);

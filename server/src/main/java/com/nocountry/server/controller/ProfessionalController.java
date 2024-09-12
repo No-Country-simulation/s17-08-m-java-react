@@ -3,6 +3,8 @@ package com.nocountry.server.controller;
 import com.nocountry.server.model.dto.ProfessionalDto;
 import com.nocountry.server.model.entity.Professional;
 import com.nocountry.server.service.impl.ProfessionalService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,17 +14,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.stream;
-
-
+@Tag(name = "Professionals")
 @RestController
-@RequestMapping("/professional")
+@RequestMapping("/professionals")
 @RequiredArgsConstructor
 public class ProfessionalController {
 
     private final ProfessionalService professionalService;
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<?> createProfessional(@RequestBody @Valid ProfessionalDto dto){
         professionalService.createProfessional(dto);
 
@@ -40,6 +40,7 @@ public class ProfessionalController {
         }
     }
 
+    @SecurityRequirements
     @GetMapping("/{id}")
     public ResponseEntity<?> getProfessional(@PathVariable Long id){
         Professional professional = professionalService.findById(id);
@@ -50,7 +51,8 @@ public class ProfessionalController {
 
     }
 
-    @GetMapping("/")
+    @SecurityRequirements
+    @GetMapping
     public ResponseEntity<?> getAllProfessionals(){
         List<Professional> professionals = professionalService.getAllProfessional();
         if(!professionals.isEmpty()){
@@ -59,7 +61,8 @@ public class ProfessionalController {
             return new ResponseEntity<>("There isn't any professional to show", HttpStatus.NO_CONTENT);
 
     }
-//filter by category and availability
+
+    @SecurityRequirements
     @GetMapping("/professionals/category/availability/{categoryId}/{availability}")
     public ResponseEntity<?> getProfessionalByCategoryAndAvailability(@PathVariable Long categoryId, @PathVariable String availability){
         List<Professional> professionalsByCategory = professionalService.getProfessionalByCategory(categoryId);
@@ -72,7 +75,7 @@ public class ProfessionalController {
         return ResponseEntity.ok(professionalsByCategoryAvailability);
     }
 
-//filter by category and rating
+    @SecurityRequirements
     @GetMapping("/professionals/category/rating/{categoryId}/{rating}")
     public ResponseEntity<?> getProfessionalByCategoryAndRating(@PathVariable Long categoryId, @PathVariable int rating){
         List<Professional> professionalsByCategory = professionalService.getProfessionalByCategory(categoryId);
