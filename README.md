@@ -1,7 +1,7 @@
 <h1 align="center"> s17-08-m-java-react No Country 🌎</h1>
 
 <div align="center">
-  <img src="https://github.com/No-Country-simulation/c19-16-m-java-react/blob/5ca0d63f4e3e2dca65d266506b3bcb42bb8f4f43/essential_logo.png" width="280" alt="LOGO">
+  <img src="https://github.com/No-Country-simulation/s17-08-m-java-react/blob/develop-back/Arreglo_ya_Principal.png" width="280" alt="LOGO">
 </div>
 
 ## 💻 Arrego Ya 👷‍♂️: 
