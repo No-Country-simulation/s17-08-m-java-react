@@ -56,46 +56,64 @@ xxxxx
     <th>Portfolio</th>
   </tr>
   <tr>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td><a href="https:///xxxxx" target="_blank">Ver LinkedInxxx</a></td>
+    <td>Leon</td>
+    <td>Lederhos Sturich</td>
+    <td>BackEnd / Project Manager</td>
+    <td><a href="https://www.linkedin.com/in/leon-lederhos-1500661a3/" target="_blank">Ver LinkedIn</a></td>
   </tr>
   <tr>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td><a href="https://xxxxx" target="_blank">Ver portafolio</a></td>
+    <td>Rodys</td>
+    <td>Rodriguez</td>
+    <td>Backend</td>
+    <td><a href="https://www.linkedin.com/in/rodys-rodriguez-b0460b1aa/" target="_blank">Ver portafolio</a></td>
   </tr>
    <tr>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td><a href="xxxxx" target="_blank">LinkedIn</a></td>
+    <td>Leonel</td>
+    <td>Amaya</td>
+    <td>Backend</td>
+    <td><a href="https://www.linkedin.com/in/leonelamaya/" target="_blank">LinkedIn</a></td>
   </tr>
    <tr>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td><a href="xxxxxg" target="_blank">GitHub</a></td>
+    <td>Karen</td>
+    <td>Schneider</td>
+    <td>UX/UI</td>
+    <td><a href="https://www.linkedin.com/in/schneider-karen/" target="_blank">GitHub</a></td>
   </tr>
   <tr>
-    <td>xxxxx</td>
-    <td>xxx</td>
-    <td>xxxxx</td>
+    <td>Consuelo</td>
+    <td>León</td>
+    <td>UX/UI</td>
     <td><a href="xxxxxxx" target="_blank">Ver xxx</a></td>
   </tr>
      <tr>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td>xxxxx</td>
-    <td><a href="xxxxx" target="_blank">Ver portafolio</a></td>
+    <td>Sabrina</td>
+    <td>Ortiz</td>
+    <td>UX/UI</td>
+    <td><a href="https://www.linkedin.com/in/sabrina-micaela-ortiz/" target="_blank">Ver portafolio</a></td>
   </tr>
-   <tr>
+    <tr>
+    <td>Cristian</td>
+    <td>Dal Piva</td>
+    <td>UX/UI</td>
+    <td><a href="https://www.linkedin.com/in/cristiandalpiva/" target="_blank">Ver portafolio</a></td>
+  </tr>
+    <tr>
+    <td>Matias</td>
+    <td>Stagnitta</td>
+    <td>QA</td>
+    <td><a href="https://www.linkedin.com/in/matias-stagnitta/" target="_blank">Ver portafolio</a></td>
+  </tr>
+    <tr>
+    <td>Angel</td>
+    <td>Zaki</td>
+    <td>QA/Frontend</td>
+    <td><a href="https://www.linkedin.com/in/angel-salazar-maylle-36236b198/" target="_blank">Ver portafolio</a></td>
+  </tr>
+    <tr>
     <td>Carolina</td>
     <td>Arteaga</td>
     <td>QA Tester</td>
-    <td><a href="xxxxx2" target="_blank">LinkedIn</a></td>
+    <td><a href="https://www.linkedin.com/in/carola02/" target="_blank">LinkedIn</a></td>
   </tr>
 </table>
 <br>
