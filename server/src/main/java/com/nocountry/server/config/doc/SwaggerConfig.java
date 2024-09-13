@@ -19,6 +19,10 @@ import org.springframework.http.HttpHeaders;
                 @Server(
                         url = "http://localhost:9090/api/v1",
                         description = "DEV SERVER"
+                ),
+                @Server(
+                        url = "https://s17-08-m-java-react.onrender.com/api/v1",
+                        description = "PROD SERVER"
                 )
         },
         security = @SecurityRequirement(name = "Security Token")
