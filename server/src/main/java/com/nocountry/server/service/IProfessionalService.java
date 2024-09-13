@@ -1,9 +1,8 @@
 package com.nocountry.server.service;
 
-import com.nocountry.server.model.dto.ProfessionalDto;
-import com.nocountry.server.model.dto.UserDto;
+import com.nocountry.server.model.dto.ProfessionalRequest;
+import com.nocountry.server.model.dto.ProfessionalResponse;
 import com.nocountry.server.model.entity.Professional;
-import com.nocountry.server.model.entity.User;
 
 import java.util.List;
 
@@ -13,9 +12,7 @@ public interface IProfessionalService {
 
     List<Professional> getAllProfessional();
 
-    void createProfessional(ProfessionalDto professionalDto);
-
-    Professional updateProfessional(ProfessionalDto ProfessionalDto,  Long id);
+    ProfessionalResponse updateProfessional(ProfessionalRequest request, Long id);
 
     boolean deleteProfessional(Long id);
 

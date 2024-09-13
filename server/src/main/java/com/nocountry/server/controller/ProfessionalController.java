@@ -1,8 +1,8 @@
 package com.nocountry.server.controller;
 
-import com.nocountry.server.model.dto.ProfessionalDto;
+import com.nocountry.server.model.dto.ProfessionalRequest;
 import com.nocountry.server.model.entity.Professional;
-import com.nocountry.server.service.impl.ProfessionalService;
+import com.nocountry.server.service.impl.ProfessionalServiceImpl;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -20,32 +20,20 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProfessionalController {
 
-    private final ProfessionalService professionalService;
-
-    @PostMapping
-    public ResponseEntity<?> createProfessional(@RequestBody @Valid ProfessionalDto dto){
-        professionalService.createProfessional(dto);
-
-        return new ResponseEntity<>("professional account created", HttpStatus.CREATED);
-    }
+    private final ProfessionalServiceImpl professionalServiceImpl;
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProfessional(@RequestBody @Valid ProfessionalDto dto, @PathVariable Long id){
-        Professional professionalUpdated = professionalService.updateProfessional(dto, id);
-
-        if(professionalUpdated != null){
-            return new ResponseEntity<>(professionalUpdated, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>("The professional with that id doesn't exits! ",HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> updateProfessional(@RequestBody @Valid ProfessionalRequest request,
+                                                @PathVariable Long id){
+        return ResponseEntity.ok(professionalServiceImpl.updateProfessional(request, id));
     }
 
     @SecurityRequirements
     @GetMapping("/{id}")
     public ResponseEntity<?> getProfessional(@PathVariable Long id){
-        Professional professional = professionalService.findById(id);
+        Professional professional = professionalServiceImpl.findById(id);
         if(professional != null) {
-            return new ResponseEntity<>(professionalService.findById(id), HttpStatus.OK);
+            return new ResponseEntity<>(professionalServiceImpl.findById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>("The professional with that id doesn't exists!", HttpStatus.NOT_FOUND);
 
@@ -54,9 +42,9 @@ public class ProfessionalController {
     @SecurityRequirements
     @GetMapping
     public ResponseEntity<?> getAllProfessionals(){
-        List<Professional> professionals = professionalService.getAllProfessional();
+        List<Professional> professionals = professionalServiceImpl.getAllProfessional();
         if(!professionals.isEmpty()){
-            return new ResponseEntity<>(professionalService.getAllProfessional(), HttpStatus.OK);
+            return new ResponseEntity<>(professionalServiceImpl.getAllProfessional(), HttpStatus.OK);
         }else
             return new ResponseEntity<>("There isn't any professional to show", HttpStatus.NO_CONTENT);
 
@@ -65,7 +53,7 @@ public class ProfessionalController {
     @SecurityRequirements
     @GetMapping("/professionals/category/availability/{categoryId}/{availability}")
     public ResponseEntity<?> getProfessionalByCategoryAndAvailability(@PathVariable Long categoryId, @PathVariable String availability){
-        List<Professional> professionalsByCategory = professionalService.getProfessionalByCategory(categoryId);
+        List<Professional> professionalsByCategory = professionalServiceImpl.getProfessionalByCategory(categoryId);
         if(availability.isBlank()){
             return ResponseEntity.ok(professionalsByCategory);
         }
@@ -78,7 +66,7 @@ public class ProfessionalController {
     @SecurityRequirements
     @GetMapping("/professionals/category/rating/{categoryId}/{rating}")
     public ResponseEntity<?> getProfessionalByCategoryAndRating(@PathVariable Long categoryId, @PathVariable int rating){
-        List<Professional> professionalsByCategory = professionalService.getProfessionalByCategory(categoryId);
+        List<Professional> professionalsByCategory = professionalServiceImpl.getProfessionalByCategory(categoryId);
         if(rating > 5 || rating < 1){
             return ResponseEntity.ok(professionalsByCategory);
         }
@@ -90,7 +78,7 @@ public class ProfessionalController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProfessional(@PathVariable Long id) {
-        if(professionalService.deleteProfessional(id)){
+        if(professionalServiceImpl.deleteProfessional(id)){
             return new ResponseEntity<>("Professional deleted", HttpStatus.OK);
 
         }else
