@@ -29,7 +29,7 @@ function Carousel() {
 
   return (
     <div className="container mx-auto py-16">
-      <h2 className="text-3xl font-bold text-center mb-8">Testimonios de Nuestros Clientes</h2>
+      <h2 className="text-3xl font-bold text-center p-10 bg-custom-blue text-white">Testimonios de Nuestros Clientes</h2>
       <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
           <Testimonial key={index} {...testimonial} />

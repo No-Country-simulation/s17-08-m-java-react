@@ -2,12 +2,12 @@ import React from 'react';
 import nabfeb from '../images/Ilustraciones/na_feb_.png'
 function Feature() {
   return (
-    <div id="feature" className="bg-blue-100 py-24">
+    <div id="feature" className=" py-24">
       <div className="container">
         <div className="flex flex-wrap items-center">
           <div className="w-full lg:w-1/2">
             <div className="mb-5 lg:mb-0">
-              <h2 className="mb-12 section-heading wow fadeInDown animated" data-wow-delay="0.3s" style={{ visibility: 'visible', '-webkit-animation-delay': '0.3s', '-moz-animation-delay': '0.3s', animationDelay: '0.3s' }}>Nuestro Compromiso Contigo</h2>
+              <h2 className="mb-12 section-heading wow fadeInDown animated text-gray-800" data-wow-delay="0.3s" style={{ visibility: 'visible', '-webkit-animation-delay': '0.3s', '-moz-animation-delay': '0.3s', animationDelay: '0.3s' }}>Nuestro Compromiso Contigo</h2>
 
               <div className="flex flex-wrap">
                 <div className="w-full sm:w-1/2 lg:w-1/2">
