@@ -1,7 +1,7 @@
 package com.nocountry.server.service.auth.impl;
 
 import com.nocountry.server.exception.*;
-import com.nocountry.server.mappers.IUserMapper;
+import com.nocountry.server.model.mappers.IUserMapper;
 import com.nocountry.server.model.dto.auth.AuthenticationRequest;
 import com.nocountry.server.model.dto.auth.AuthenticationResponse;
 import com.nocountry.server.model.dto.auth.UserRegistrationRequest;
@@ -94,6 +94,7 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
         } else if (role.equals(RoleEnum.PROFESSIONAL.name())) {
             Set<Role> userRoles = getRolesDataBaseOrThrow(List.of(RoleEnum.CLIENT.name(), RoleEnum.PROFESSIONAL.name()));
             user.setRoles(userRoles);
+
             Professional professional = Professional.builder().user(user).build();
             professionalRepository.save(professional);
         }

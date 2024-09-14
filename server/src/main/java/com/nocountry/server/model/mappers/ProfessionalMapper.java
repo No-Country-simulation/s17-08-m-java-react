@@ -1,17 +1,16 @@
 package com.nocountry.server.model.mappers;
 
-import com.nocountry.server.model.dto.ProfessionalDto;
+import com.nocountry.server.model.dto.ProfessionalUpdateRequest;
+import com.nocountry.server.model.dto.ProfessionalResponse;
 import com.nocountry.server.model.entity.Professional;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {IUserMapper.class})
 public interface ProfessionalMapper {
 
-    @Mapping(source = "user.id", target = "userId")
-    ProfessionalDto toDto(Professional professional);
+    ProfessionalResponse toProfessionalResponse(Professional professional);
 
-    @Mapping(source = "userId", target = "user.id")
-    Professional toEntity(ProfessionalDto professionalDto);
-
+    void updateProfessionalFromRequest(ProfessionalUpdateRequest request, @MappingTarget Professional professional);
 }

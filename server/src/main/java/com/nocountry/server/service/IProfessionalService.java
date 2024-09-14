@@ -1,25 +1,21 @@
 package com.nocountry.server.service;
 
-import com.nocountry.server.model.dto.ProfessionalDto;
-import com.nocountry.server.model.dto.UserDto;
+import com.nocountry.server.model.dto.ProfessionalUpdateRequest;
+import com.nocountry.server.model.dto.ProfessionalResponse;
 import com.nocountry.server.model.entity.Professional;
-import com.nocountry.server.model.entity.User;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface IProfessionalService {
 
-    Professional findById(Long id);
+    ProfessionalResponse findById(Long id);
 
-    List<Professional> getAllProfessional();
+    Page<ProfessionalResponse> getAllProfessional(int page, int size);
 
-    void createProfessional(ProfessionalDto professionalDto);
+    ProfessionalResponse updateProfessional(ProfessionalUpdateRequest request, Long id);
 
-    Professional updateProfessional(ProfessionalDto ProfessionalDto,  Long id);
-
-    boolean deleteProfessional(Long id);
-
-    boolean existsProfessionalById(Long id);
+    boolean lockProfessionalAccount(Long id);
 
     List<Professional> getProfessionalByCategory(Long categoryId);
 
