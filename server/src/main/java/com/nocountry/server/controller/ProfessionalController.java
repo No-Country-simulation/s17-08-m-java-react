@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class ProfessionalController {
     private final IProfessionalService professionalService;
 
     @Operation(
-            summary = "allows to update a professional",
+            summary = "Allows to update a professional",
             description = "This endpoint allows to update a professional, the professional must exist and the category must exist",
             responses = {
                     @ApiResponse(
@@ -48,6 +49,11 @@ public class ProfessionalController {
                             responseCode = "404",
                             description = "Professional not found or category not found",
                             content = {@Content}),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "An unexpected error has occurred. We are working to resolve the problem.",
+                            content = {@Content}
+                    )
             },
     parameters = {
             @Parameter(name = "id", description = "The professional id", required = true)
@@ -58,26 +64,60 @@ public class ProfessionalController {
         return ResponseEntity.ok(professionalService.updateProfessional(request, id));
     }
 
+    @Operation(
+            summary = "Get a professional by id",
+            description = "This endpoint allows to get a professional by id",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Professional successfully generated",
+                            content = @Content(schema = @Schema(implementation = ProfessionalResponse.class))),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Professional not found",
+                            content = {@Content}),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "An unexpected error has occurred. We are working to resolve the problem.",
+                            content = {@Content})
+            },
+            parameters = {
+                    @Parameter(name = "id", description = "The professional id", required = true)
+            }
+    )
     @SecurityRequirements
     @GetMapping("/{id}")
     public ResponseEntity<?> getProfessional(@PathVariable Long id) {
-        Professional professional = professionalService.findById(id);
-        if (professional != null) {
-            return new ResponseEntity<>(professionalService.findById(id), HttpStatus.OK);
-        }
-        return new ResponseEntity<>("The professional with that id doesn't exists!", HttpStatus.NOT_FOUND);
-
+        return ResponseEntity.ok(professionalService.findById(id));
     }
 
+    @Operation(
+            summary = "Get all professionals paginated",
+            description = "if you don't specify the page and size, the default values are 0 and 10",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Professional list successfully generated",
+                    content = @Content(schema = @Schema(implementation = ProfessionalResponse.class))),
+                    @ApiResponse(
+                            responseCode = "204",
+                            description = "There isn't any professional to show",
+                            content = {@Content}),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "An unexpected error has occurred. We are working to resolve the problem.",
+                            content = {@Content})
+            }
+    )
     @SecurityRequirements
     @GetMapping
-    public ResponseEntity<?> getAllProfessionals() {
-        List<Professional> professionals = professionalService.getAllProfessional();
-        if (!professionals.isEmpty()) {
-            return new ResponseEntity<>(professionalService.getAllProfessional(), HttpStatus.OK);
-        } else
-            return new ResponseEntity<>("There isn't any professional to show", HttpStatus.NO_CONTENT);
-
+    public ResponseEntity<?> getAllProfessionals(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                    @RequestParam(value = "size", defaultValue = "10") int size) {
+       Page<ProfessionalResponse> professionalPage = professionalService.getAllProfessional(page, size);
+       if (professionalPage.isEmpty()){
+              return new ResponseEntity<>("There isn't any professional to show", HttpStatus.NO_CONTENT);
+       }
+        return ResponseEntity.ok(professionalPage);
     }
 
     @SecurityRequirements

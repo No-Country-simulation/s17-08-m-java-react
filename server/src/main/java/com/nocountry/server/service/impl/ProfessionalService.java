@@ -11,6 +11,8 @@ import com.nocountry.server.repository.CategoryRepository;
 import com.nocountry.server.repository.ProfessionalRepository;
 import com.nocountry.server.service.IProfessionalService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,14 +29,16 @@ public class ProfessionalService implements IProfessionalService {
     private final ProfessionalMapper profeMapper;
 
     @Override
-    public Professional findById(Long id) {
-        Optional<Professional> professional = professionalRepo.findById(id);
-        return professional.orElseThrow(() -> new ProfessionalNotFoundException("The professional with that id (" + id + ") doesn't exists"));
+    public ProfessionalResponse findById(Long id) {
+        Professional professional = professionalRepo.findById(id)
+                .orElseThrow(() -> new ProfessionalNotFoundException("The professional with that id (" + id + ") doesn't exists"));
+        return profeMapper.toProfessionalResponse(professional);
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public List<Professional> getAllProfessional() {
-        return professionalRepo.findAll();
+    public Page<ProfessionalResponse> getAllProfessional(int page, int size) {
+        return professionalRepo.findAll(PageRequest.of(page, size)).map(profeMapper::toProfessionalResponse);
     }
 
     @Transactional
@@ -59,11 +63,11 @@ public class ProfessionalService implements IProfessionalService {
 
     @Override
     public boolean deleteProfessional(Long id) {
-        if(professionalRepo.existsById(id)){
+        if (professionalRepo.existsById(id)) {
             professionalRepo.deleteById(id);
             return true;
         }
-            return false;
+        return false;
     }
 
     @Override
