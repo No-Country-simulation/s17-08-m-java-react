@@ -1,6 +1,7 @@
 package com.nocountry.server.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record ProfessionalUpdateRequest(
@@ -24,7 +25,7 @@ public record ProfessionalUpdateRequest(
         @NotBlank(message = "The availability can't be blank")
         String availability,
 
-        @NotBlank(message = "The category id is mandatory")
+        @NotNull(message = "The category id is mandatory")
         Long categoryId
 ) {
 }
