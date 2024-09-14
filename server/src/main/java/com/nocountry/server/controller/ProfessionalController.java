@@ -55,9 +55,9 @@ public class ProfessionalController {
                             content = {@Content}
                     )
             },
-    parameters = {
-            @Parameter(name = "id", description = "The professional id", required = true)
-    })
+            parameters = {
+                    @Parameter(name = "id", description = "The professional id", required = true)
+            })
     @PutMapping("/{id}")
     public ResponseEntity<ProfessionalResponse> updateProfessional(@RequestBody @Valid ProfessionalUpdateRequest request,
                                                                    @PathVariable Long id) {
@@ -98,7 +98,7 @@ public class ProfessionalController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Professional list successfully generated",
-                    content = @Content(schema = @Schema(implementation = ProfessionalResponse.class))),
+                            content = @Content(schema = @Schema(implementation = ProfessionalResponse.class))),
                     @ApiResponse(
                             responseCode = "204",
                             description = "There isn't any professional to show",
@@ -112,11 +112,11 @@ public class ProfessionalController {
     @SecurityRequirements
     @GetMapping
     public ResponseEntity<?> getAllProfessionals(@RequestParam(value = "page", defaultValue = "0") int page,
-                                                    @RequestParam(value = "size", defaultValue = "10") int size) {
-       Page<ProfessionalResponse> professionalPage = professionalService.getAllProfessional(page, size);
-       if (professionalPage.isEmpty()){
-              return new ResponseEntity<>("There isn't any professional to show", HttpStatus.NO_CONTENT);
-       }
+                                                 @RequestParam(value = "size", defaultValue = "10") int size) {
+        Page<ProfessionalResponse> professionalPage = professionalService.getAllProfessional(page, size);
+        if (professionalPage.isEmpty()) {
+            return new ResponseEntity<>("There isn't any professional to show", HttpStatus.NO_CONTENT);
+        }
         return ResponseEntity.ok(professionalPage);
     }
 
@@ -146,13 +146,37 @@ public class ProfessionalController {
         return ResponseEntity.ok(professionalsByCategoryRating);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProfessional(@PathVariable Long id) {
-        if (professionalService.deleteProfessional(id)) {
-            return new ResponseEntity<>("Professional deleted", HttpStatus.OK);
+    @Operation(
+            summary = "Allow Lock a professional account",
+            description = "you must specify the professional id, you must be an admin to lock a professional account",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Professional locked",
+                            content = {@Content}),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "The professional with that id doesn't exists!",
+                            content = {@Content}),
+                    @ApiResponse(
+                            responseCode = "403",
+                            description = "Forbidden",
+                            content = {@Content}),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "An unexpected error has occurred. We are working to resolve the problem.",
+                            content = {@Content})
+            },
+            parameters = {
+                    @Parameter(name = "id", description = "The professional id", required = true)
+            }
+    )
+    @PatchMapping("/{id}")
+    public ResponseEntity<String> lockProfessional(@PathVariable Long id) {
+        if (professionalService.lockProfessionalAccount(id)) {
+            return new ResponseEntity<>("Professional locked", HttpStatus.OK);
 
         } else
             return new ResponseEntity<>("The professional with that id doesn't exists!", HttpStatus.NOT_FOUND);
-
     }
 }

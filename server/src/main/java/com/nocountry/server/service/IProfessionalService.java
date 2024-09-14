@@ -15,9 +15,7 @@ public interface IProfessionalService {
 
     ProfessionalResponse updateProfessional(ProfessionalUpdateRequest request, Long id);
 
-    boolean deleteProfessional(Long id);
-
-    boolean existsProfessionalById(Long id);
+    boolean lockProfessionalAccount(Long id);
 
     List<Professional> getProfessionalByCategory(Long categoryId);
 

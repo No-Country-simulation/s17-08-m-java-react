@@ -28,6 +28,7 @@ public class ProfessionalService implements IProfessionalService {
     private final CategoryService categoryService;
     private final ProfessionalMapper profeMapper;
 
+    @Transactional(readOnly = true)
     @Override
     public ProfessionalResponse findById(Long id) {
         Professional professional = professionalRepo.findById(id)
@@ -61,18 +62,16 @@ public class ProfessionalService implements IProfessionalService {
         return profeMapper.toProfessionalResponse(professionalRepo.save(professionalDb));
     }
 
+    @Transactional
     @Override
-    public boolean deleteProfessional(Long id) {
-        if (professionalRepo.existsById(id)) {
-            professionalRepo.deleteById(id);
+    public boolean lockProfessionalAccount(Long id) {
+        Optional<Professional> professional = professionalRepo.findById(id);
+        if (professional.isPresent()) {
+            professional.get().getUser().setAccountLocked(true);
+            professionalRepo.save(professional.get());
             return true;
         }
         return false;
-    }
-
-    @Override
-    public boolean existsProfessionalById(Long id) {
-        return professionalRepo.existsById(id);
     }
 
     @Override
