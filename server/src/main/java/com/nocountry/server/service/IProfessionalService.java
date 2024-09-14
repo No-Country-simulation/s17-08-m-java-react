@@ -1,6 +1,6 @@
 package com.nocountry.server.service;
 
-import com.nocountry.server.model.dto.ProfessionalRequest;
+import com.nocountry.server.model.dto.ProfessionalUpdateRequest;
 import com.nocountry.server.model.dto.ProfessionalResponse;
 import com.nocountry.server.model.entity.Professional;
 
@@ -12,7 +12,7 @@ public interface IProfessionalService {
 
     List<Professional> getAllProfessional();
 
-    ProfessionalResponse updateProfessional(ProfessionalRequest request, Long id);
+    ProfessionalResponse updateProfessional(ProfessionalUpdateRequest request, Long id);
 
     boolean deleteProfessional(Long id);
 

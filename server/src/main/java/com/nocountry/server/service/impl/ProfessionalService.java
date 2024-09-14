@@ -1,13 +1,18 @@
 package com.nocountry.server.service.impl;
 
 import com.nocountry.server.exception.ProfessionalNotFoundException;
-import com.nocountry.server.model.dto.ProfessionalDto;
+import com.nocountry.server.model.dto.ProfessionalUpdateRequest;
+import com.nocountry.server.model.dto.ProfessionalResponse;
 import com.nocountry.server.model.entity.Category;
 import com.nocountry.server.model.entity.Professional;
+import com.nocountry.server.model.entity.User;
+import com.nocountry.server.model.mappers.ProfessionalMapper;
+import com.nocountry.server.repository.CategoryRepository;
 import com.nocountry.server.repository.ProfessionalRepository;
 import com.nocountry.server.service.IProfessionalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,15 +22,14 @@ import java.util.Optional;
 public class ProfessionalService implements IProfessionalService {
 
     private final ProfessionalRepository professionalRepo;
-
-    private final UserService userService;
-
+    private final CategoryRepository categoryRepo;
     private final CategoryService categoryService;
+    private final ProfessionalMapper profeMapper;
 
     @Override
     public Professional findById(Long id) {
-        Optional<Professional> professional =  professionalRepo.findById(id);
-        return professional.orElseThrow(()-> new ProfessionalNotFoundException("The professional with that id (" +id+ ") doesn't exists"));
+        Optional<Professional> professional = professionalRepo.findById(id);
+        return professional.orElseThrow(() -> new ProfessionalNotFoundException("The professional with that id (" + id + ") doesn't exists"));
     }
 
     @Override
@@ -33,34 +37,24 @@ public class ProfessionalService implements IProfessionalService {
         return professionalRepo.findAll();
     }
 
+    @Transactional
     @Override
-    public void createProfessional(ProfessionalDto professionalDto) {
-        Professional professional = new Professional();
+    public ProfessionalResponse updateProfessional(ProfessionalUpdateRequest request, Long id) {
+        Professional professionalDb = professionalRepo.findById(id)
+                .orElseThrow(() -> new ProfessionalNotFoundException("Professional not found"));
 
-        professional.setAvailability(professionalDto.getAvailability());
-        professional.setDescription(professionalDto.getDescription());
-        professional.setExperience(professionalDto.getExperience());
-        professional.setUser(
-                userService.findById(professionalDto.getUserId())
-        );
+        Category category = categoryRepo.findById(request.categoryId())
+                .orElseThrow(() -> new ProfessionalNotFoundException("Category not found"));
 
-        professionalRepo.save(professional);
-    }
+        User user = professionalDb.getUser();
 
-    @Override
-    public Professional updateProfessional(ProfessionalDto professionalDto, Long id) {
-        if (professionalRepo.existsById(id)){
-            Professional professional = findById(id);
+        profeMapper.updateProfessionalFromRequest(request, professionalDb);
 
-            professional.setAvailability(professionalDto.getAvailability());
-            professional.setDescription(professionalDto.getDescription());
-            professional.setExperience(professionalDto.getExperience());
-
-
-            return professionalRepo.save(professional);
-        }
-        return null;
-
+        user.setLocation(request.location());
+        user.setUrlImage(request.urlImage());
+        professionalDb.setUser(user);
+        professionalDb.getCategories().add(category);
+        return profeMapper.toProfessionalResponse(professionalRepo.save(professionalDb));
     }
 
     @Override
