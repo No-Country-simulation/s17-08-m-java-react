@@ -2,25 +2,24 @@ package com.nocountry.server.service.impl;
 
 import com.nocountry.server.model.dto.SocialNetworkDto;
 import com.nocountry.server.model.entity.SocialNetworks;
+import com.nocountry.server.repository.ProfessionalRepository;
 import com.nocountry.server.repository.SocialNetworksRepository;
 import com.nocountry.server.service.ISocialNetworksService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class SocialNetworksService implements ISocialNetworksService {
 
-    @Autowired
-    private SocialNetworksRepository socialNetworksRepository;
-
-    @Autowired
-    private ProfessionalService professionalService;
+    private final SocialNetworksRepository socialNetworksRepository;
+    private final ProfessionalRepository professionalRepository;
 
     @Override
     public SocialNetworks createSocialNetworks(SocialNetworkDto dto) {
         SocialNetworks socialNetworks = new SocialNetworks();
         socialNetworks.setDescription(dto.getDescription());
-        socialNetworks.setProfessional(professionalService.findById(dto.getProfessionalId()));
+        socialNetworks.setProfessional(professionalRepository.findById(dto.getProfessionalId()).orElseThrow());
 
         socialNetworksRepository.save(socialNetworks);
         return socialNetworks;
