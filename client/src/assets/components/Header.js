@@ -25,7 +25,7 @@ function Header() {
       <Link to="/nosotros" className="text-lg text-white hover:text-blue-500 transition duration-300 ease-in-out ">Nosotros</Link>
     </li>
     <li className='nav-item'>
-      <Link to="/plomero" className="text-lg text-white hover:text-blue-500 transition duration-300 ease-in-out">Servicos</Link>
+      <Link to="/plomero" className="text-lg text-white hover:text-blue-500 transition duration-300 ease-in-out">Servicios</Link>
     </li>
     <li className='nav-item'>
       <Link to="#feature" className="text-lg text-white hover:text-blue-500 transition duration-300 ease-in-out">Promociona tu Servicio</Link>
@@ -35,11 +35,14 @@ function Header() {
     </li>
   </ul>
 </div>
-                        <div className="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
-                        <Link to="/login" className="bg-white text-blue-600 border-0 border-blue-600 px-2 py-3 rounded-full text-xs font-medium  duration-300 hover:bg-blue-600 hover:text-white">
-                          Iniciar_Sesión
-                        </Link>
-                        </div>
+<div className="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
+  <Link 
+    to="/login" 
+    className="bg-white text-blue-600 border-0 border-blue-600 px-2 py-3 rounded-full text-xs font-medium duration-300 hover:bg-blue-600 hover:text-white whitespace-nowrap min-w-[120px] inline-block text-center"
+  >
+    Iniciar Sesión
+  </Link>
+</div>
                     </nav>
                 </div>
             </div>
