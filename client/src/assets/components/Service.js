@@ -105,7 +105,7 @@ const Services = () => {
               key={index}
               className="flex flex-col items-center"
             >
-              <div className="text-center bg-custom-light-blue justify-center  rounded-lg shadow-md p-6 hover:bg-blue-50 hover:text-white w-24 h-24 hover:text-white transform transition-transform duration-300 hover:scale-105 ">
+              <div className="text-center bg-custom-light-blue justify-center  rounded-lg shadow-md p-6 hover:bg-blue-50 w-24 h-24 hover:text-white transform transition-transform duration-300 hover:scale-105 ">
                 <FontAwesomeIcon
                   icon={service.icon}
                   className="text-blue-500 text-4xl mb-2"
