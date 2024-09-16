@@ -7,7 +7,7 @@ import albañil from '../images/albañil.jpg';  */
 
 
 import {
-  faWrench, faPaintRoller,faHammer,faTrowel ,faHelmetSafety,faTruckPickup,faBucket,faFire,faTree,faFaucetDrip,faCar,faKey,faVideo,faBolt,faGavel,faTemperatureLow,
+faPaintRoller,faHammer,faTrowel ,faHelmetSafety,faTruckPickup,faBucket,faFire,faTree,faFaucetDrip,faCar,faKey,faVideo,faBolt,faGavel,faTemperatureLow,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Services = () => {

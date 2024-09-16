@@ -6,7 +6,7 @@ import Logo from '../images/ArregloYa 3.png'
 function Login() {
     return (
         
-        <div className="flex items-center justify-center h-screen ">            
+        <div className="flex items-center justify-center">            
             <div className="w-full max-w-xs ">
             <img src={Logo} alt=""  className="  px-24 "/>
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">

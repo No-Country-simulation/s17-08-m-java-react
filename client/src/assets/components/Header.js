@@ -7,7 +7,7 @@ function Header() {
     const [isNavOpen, setIsNavOpen] = useState(false);  // Estado para controlar la visibilidad del menú
 
     return (
-        <header id="header-wrap" className="relative">
+        <header id="header-wrap" className="relative p-12">
             <div className="bg-gray-800 navigation fixed top-0 left-0 w-full z-30 bg-white shadow-md"style={{ height: '100px' }}>
                 <div className="container">
                 <nav className="container mx-auto flex items-center justify-between h-24 px-4">
@@ -38,7 +38,7 @@ function Header() {
 <div className="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
   <Link 
     to="/login" 
-    className="bg-white text-blue-600 border border-blue-600 px-4 py-2 rounded-full text-sm font-medium duration-300 hover:bg-blue-600 hover:text-white whitespace-nowrap min-w-[120px] inline-block text-center"
+    className="bg-white text-blue-600 border-0 border-blue-600 px-2 py-3 rounded-full text-xs font-medium duration-300 hover:bg-blue-600 hover:text-white whitespace-nowrap min-w-[120px] inline-block text-center"
   >
     Iniciar Sesión
   </Link>

@@ -8,6 +8,8 @@ import albañil4 from '../images/Personas perfiles/Albañil/Rectangle18.png';
 import albañil5 from '../images/Personas perfiles/Albañil/Rectangle19.png';
 import albañil6 from '../images/Personas perfiles/Albañil/Rectangle20.png';
 
+
+
 // Datos iniciales de ejemplo
 const initialWorkers = [
   { id: 1, name: 'Juan Pérez', reviews: '★★★★☆', contact: '+54 351 123 123', image: albañil1 },
@@ -26,12 +28,17 @@ function PlomeroPage() {
   const handleFilterChange = (filterName, value) => {
     setFilters(prev => ({ ...prev, [filterName]: value }));
     // Aquí agregar lógica para filtrar trabajadores basada en `filters`
+    
   };
+
 
   return (
     <div className="min-h-screen pt-10">
       <FilterComponent onFilterChange={handleFilterChange} />
-      <WorkersGrid workers={workers} />
+      <WorkersGrid workers={workers} />    
+      <div className="text-center my-8">
+   
+      </div>   
     </div>
   );
 }
