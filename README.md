@@ -4,8 +4,8 @@
   <img src="https://github.com/No-Country-simulation/s17-08-m-java-react/blob/develop-back/Arreglo_ya_Principal.png" width="280" alt="LOGO">
 </div>
 
-## 💻 Arrego Ya 👷‍♂️: 
-Arreglo es una aplicación innovadora diseñada para conectar a los usuarios con especialistas en mantenimiento del hogar. Con nuestra plataforma, podrás encontrar fácilmente profesionales confiables y eficientes para cualquier tarea doméstica, basándote en una evaluación detallada de su desempeño en trabajos anteriores.
+## 💻 Arreglo Ya 👷‍♂️: 
+Arreglo Ya es una aplicación innovadora diseñada para conectar a los usuarios con especialistas en mantenimiento del hogar. Con nuestra plataforma, podrás encontrar fácilmente profesionales confiables y eficientes para cualquier tarea doméstica, basándote en una evaluación detallada de su desempeño en trabajos anteriores.
 
 La dificultad para encontrar servicios de mantenimiento del hogar fiables y de calidad es una preocupación común, exacerbada por la falta de información verificable y de transparencia en el proceso de contratación. Arreglo aborda este problema al proporcionar un sistema claro y transparente que facilita la comunicación y asegura que el especialista seleccionado cumpla con tus expectativas.
 
