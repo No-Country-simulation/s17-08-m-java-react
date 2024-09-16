@@ -25,7 +25,7 @@ function Header() {
                   <Link to="/nosotros" className="text-lg text-white hover:text-blue-500 transition duration-300 ease-in-out ">Nosotros</Link>
                 </li>
                 <li className='nav-item'>
-                  <Link to="/plomero" className="text-lg text-white hover:text-blue-500 transition duration-300 ease-in-out">Servicios</Link>
+                  <Link to="/servicios" className="text-lg text-white hover:text-blue-500 transition duration-300 ease-in-out">Servicios</Link>
                 </li>
                 <li className='nav-item'>
                   <Link to="#feature" className="text-lg text-white hover:text-blue-500 transition duration-300 ease-in-out">Promociona tu Servicio</Link>
