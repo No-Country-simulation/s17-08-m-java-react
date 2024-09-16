@@ -9,7 +9,7 @@ function Subscribe() {
         <h4 className="mb-8 section-heading wow fadeInUp animated" data-wow-delay="0.3s" style={{ visibility: 'visible', '-webkit-animation-delay': '0.3s', '-moz-animation-delay': '0.3s', animationDelay: '0.3s' }}>
           ¿No Encuentras el Servicio que Necesitas?
         </h4>
-        <p className="mb-8 text-gray-800 leading-loose text-sm wow fadeInUp animated" data-wow-delay="0.6s" style={{ visibility: 'visible', '-webkit-animation-delay': '0.6s', '-moz-animation-delay': '0.6s', animationDelay: '0.6s' }}>
+        <p className="mb-8 text-gray-800 leading-loose text-md wow fadeInUp animated" data-wow-delay="0.6s" style={{ visibility: 'visible', '-webkit-animation-delay': '0.6s', '-moz-animation-delay': '0.6s', animationDelay: '0.6s' }}>
           Si no encuentras exactamente lo que buscas, no te preocupes. Escríbenos y te ayudaremos a conectar con el profesional adecuado para tu necesidad.<br className="hidden lg:block" />
           ¡Estamos aquí para ayudarte a encontrar la solución perfecta para tu hogar!
         </p>

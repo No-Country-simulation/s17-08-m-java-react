@@ -4,13 +4,13 @@ import NosotrosImg from "../images/Ilustraciones/nosotros.png";
 function Nosotros() {
   return (
     <div className="container mx-auto py-16">
-      <h1 className="text-left text-gray-800 text-3xl font-bold mb-8">
+      <h1 className="text-left text-gray-800 text-3xl font-bold mb-2">
         Quiénes somos
       </h1>
 
       <div className="flex flex-wrap items-center">
         {/* Contenedor del texto */}
-        <div className="w-full lg:w-1/2 lg:pl-8 text-left">
+        <div className="w-full lg:w-1/2 lg:pl-2 text-left">
           <p>
             En ArregloYa, nuestro objetivo es conectar a los usuarios con
             profesionales de confianza para el mantenimiento del hogar,
@@ -27,7 +27,7 @@ function Nosotros() {
         </div>
 
         {/* Contenedor de la imagen */}
-        <div className="w-full lg:w-1/2 lg:pr-8">
+        <div className="w-full lg:w-1/2 lg:pr-4">
           <div
             className="mx-3 lg:mx-0 wow fadeInRight animated"
             data-wow-delay="0.3s"
@@ -55,10 +55,10 @@ function Nosotros() {
           <h2 className="text-2xl font-bold mb-4">
             Pasos simples para contratar
           </h2>
-          <ol className="list-decimal">
-            <li>Paso 1: Busca al profesional que necesitas.</li>
-            <li>Paso 2: Contacta al profesional directamente.</li>
-            <li>Paso 3: ¡Listo! Tu problema está resuelto.</li>
+          <ol className="list-decimal  pl-4">
+            <li>Busca al profesional que necesitas.</li>
+            <li>Contacta al profesional directamente.</li>
+            <li>¡Listo! Tu problema está resuelto.</li>
           </ol>
         </div>
       </div>

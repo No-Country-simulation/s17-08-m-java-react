@@ -7,10 +7,10 @@ function Home() {
       <div className="container mx-auto px-4 ">
         <div className="flex flex-col lg:flex-row justify-between items-center">
           <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <h2 className="text-left text-4xl font-bold leading-snug text-gray-700 mb-10 wow fadeInUp animated" data-wow-delay="1s" style={{ visibility: 'visible', animationDelay: '1s', fontSize: '75px' }}>
+            <h2 className="text-left text-4xl font-bold leading-snug text-gray-700 mb-5 wow fadeInUp animated" data-wow-delay="1s" style={{ visibility: 'visible', animationDelay: '1s', fontSize: '75px' }}>
               Soluciones<br className="hidden lg:block" />Para tu Hogar
             </h2>
-            <h3 className=" text-left  text-3xl leading-snug text-gray-700 mb-10 wow fadeInUp animated" data-wow-delay="1s" style={{ visibility: 'visible', animationDelay: '1s', lineHeight: '2.5' }}>
+            <h3 className=" text-left  text-xl leading-snug text-gray-700 mb-8 pr-5 wow fadeInUp animated" data-wow-delay="1s" style={{ visibility: 'visible', animationDelay: '1s', lineHeight: '2.5' }}>
               Servicio de calidad garantizada para cada rincón de tu hogar
             </h3>
 
@@ -35,7 +35,7 @@ function Home() {
 
           <div className="w-full lg:w-1/2 text-center">
             <div className="mx-3 lg:mr-0 lg:ml-3 wow fadeInRight animated" data-wow-delay="0.3s" style={{ visibility: 'visible', animationDelay: '0.3s' }}>
-              <img src={Imagenhero} alt="Imagen Hero" className="w-full h-auto" />
+              <img src={Imagenhero} alt="Imagen Hero" className="w-full h-full" />
             </div>
           </div>
         </div>
