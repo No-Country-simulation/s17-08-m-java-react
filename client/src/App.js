@@ -9,6 +9,7 @@ import Footer from './assets/components/Footer';
 import Activation from './assets/pages/Activation';
 import './assets/css/animate.css';
 import './assets/css/tailwind.css';
+import Servicios from './assets/pages/Servicios';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/nosotros" element={<Nosotros />} />
                 <Route path='/activation' element={<Activation/>}/>
+                <Route path='/servicios' element={<Servicios/>}/>
             </Routes>
             <Footer />
         </BrowserRouter>

@@ -20,18 +20,13 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log(username);
-        console.log(password);
         
         const { data } = await instance.post('/auth/log-in', {
             username: username,
             password: password
         });
         if (data.token) {
-            console.log("Se conectó a al backend");
-            console.log(data.token);
-            navigate('/');
+            navigate('/plomero');
         }
     }
 
