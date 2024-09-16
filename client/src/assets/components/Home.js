@@ -8,7 +8,7 @@ function Home() {
         <div className="flex flex-col lg:flex-row justify-between items-center">
           <div className="w-full lg:w-1/2 text-center lg:text-left">
             <h2 className="text-left text-4xl font-bold leading-snug text-gray-700 mb-5 wow fadeInUp animated" data-wow-delay="1s" style={{ visibility: 'visible', animationDelay: '1s', fontSize: '75px' }}>
-              Soluciones<br className="hidden lg:block" />Para tu Hogar
+              Soluciones<br className="hidden lg:block" /> Para tu Hogar
             </h2>
             <h3 className=" text-left  text-xl leading-snug text-gray-700 mb-8 pr-5 wow fadeInUp animated" data-wow-delay="1s" style={{ visibility: 'visible', animationDelay: '1s', lineHeight: '2.5' }}>
               Servicio de calidad garantizada para cada rincón de tu hogar

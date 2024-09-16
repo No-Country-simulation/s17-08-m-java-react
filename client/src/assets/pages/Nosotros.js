@@ -55,7 +55,7 @@ function Nosotros() {
           <h2 className="text-2xl font-bold mb-4">
             Pasos simples para contratar
           </h2>
-          <ol className="list-decimal  pl-4">
+          <ol className="list-decimal  pl-4 text-gray-600">
             <li>Busca al profesional que necesitas.</li>
             <li>Contacta al profesional directamente.</li>
             <li>¡Listo! Tu problema está resuelto.</li>
