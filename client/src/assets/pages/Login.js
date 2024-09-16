@@ -26,7 +26,7 @@ function Login() {
             password: password
         });
         if (data.token) {
-            navigate('/');
+            navigate('/plomero');
         }
     }
 
