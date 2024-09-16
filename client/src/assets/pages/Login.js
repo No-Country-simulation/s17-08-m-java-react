@@ -1,26 +1,57 @@
-import React from 'react';
+import React, {useState} from 'react';
 import facebook from '../images/facebook2.svg'
 import google from '../images/google2.svg'
 import Logo from '../images/ArregloYa 3.png'
+import instance from '../../api/axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    return (
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
+    const navigate = useNavigate();
+
+    const handleUsername = (e) => {
+        setUsername(e.target.value);
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        console.log(username);
+        console.log(password);
+        
+        const { data } = await instance.post('/auth/log-in', {
+            username: username,
+            password: password
+        });
+        if (data.token) {
+            console.log("Se conectó a al backend");
+            console.log(data.token);
+            navigate('/');
+        }
+    }
+
+    return (    
         
         <div className="flex items-center justify-center">            
             <div className="w-full max-w-xs ">
             <img src={Logo} alt=""  className="  px-24 "/>
-                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                             E-mail
                         </label>
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email"/>
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" onChange={handleUsername}/>
                     </div>
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                             Contraseña
                         </label>
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********"/>
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********" onChange={handlePassword}/>
                         <p className="text-gray-600 text-xs italic">Mínimo 8 caracteres.</p>
                     </div>
                     <div className="mb-6">
@@ -30,7 +61,7 @@ function Login() {
                         </label>
                     </div>
                     <div className="flex items-center justify-between mb-5" >
-                        <button className="btn w-64 h-10 bg-blue-500 text-white border-2 border-blue-500 text-ms font-medium rounded-md flex items-center justify-center hover:bg-blue-600 transition duration-300 ease-in-out" type="button">
+                        <button className="btn w-64 h-10 bg-blue-500 text-white border-2 border-blue-500 text-ms font-medium rounded-md flex items-center justify-center hover:bg-blue-600 transition duration-300 ease-in-out" type="submit">
                             Iniciar sesión
                         </button>
                     </div>
