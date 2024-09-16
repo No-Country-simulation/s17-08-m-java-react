@@ -74,7 +74,7 @@ La dificultad para encontrar servicios de mantenimiento del hogar fiables y de c
     <td>Consuelo</td>
     <td>León</td>
     <td>UX/UI</td>
-    <td><a href="https://www.linkedin.com/in/consuelo-leon-abarca/" target="_blank">Ver xxx</a></td>
+    <td><a href="https://www.linkedin.com/in/consuelo-leon-abarca/" target="_blank">Ver LinkedIn</a></td>
   </tr>
      <tr>
     <td>Sabrina</td>
