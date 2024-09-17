@@ -10,6 +10,7 @@ import Activation from './assets/pages/Activation';
 import './assets/css/animate.css';
 import './assets/css/tailwind.css';
 import Servicios from './assets/pages/Servicios';
+import Register from './assets/pages/Registrate';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/plomero" element={<PlomeroPage />} />
                 <Route path="/formulario-albanil" element={<FormularioAlbañil />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/nosotros" element={<Nosotros />} />
                 <Route path='/activation' element={<Activation/>}/>
                 <Route path='/servicios' element={<Servicios/>}/>

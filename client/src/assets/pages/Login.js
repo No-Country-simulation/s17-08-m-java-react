@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import facebook from '../images/facebook2.svg'
-import google from '../images/google2.svg'
-import Logo from '../images/ArregloYa 3.png'
+import facebook from '../images/facebook2.svg';
+import google from '../images/google2.svg';
+import Logo from '../images/ArregloYa 3.png';
 import instance from '../../api/axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
     const [username, setUsername] = useState();
@@ -31,10 +31,9 @@ function Login() {
     }
 
     return (    
-        
         <div className="flex items-center justify-center">            
-            <div className="w-full max-w-xs ">
-            <img src={Logo} alt=""  className="  px-24 "/>
+            <div className="w-full max-w-xs">
+                <img src={Logo} alt=""  className="  px-24 "/>
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
@@ -61,20 +60,20 @@ function Login() {
                         </button>
                     </div>
                     <div>
-                        <p className="inline-block align-baseline  text-sm text-gray-700 " href="/register">
+                        <p className="inline-block align-baseline text-sm text-gray-700">
                             ¿Aún no tienes cuenta? 
                         </p>
-                        <a className="inline-block align-baseline  font-bold text-sm text-blue-700 hover:text-blue-500" href="/register">
+                        <Link to="/register" className="inline-block align-baseline font-bold text-sm text-blue-700 hover:text-blue-500">
                              Regístrate
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-4 flex justify-center gap-4">
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center">
                             <img src={google} alt="Google" className="fill-current w-4 h-4 mr-0"/>
                         </button>
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center w-12 h-12">
-    <img src={facebook} alt="Facebook" className="w-6 h-6"/>
-</button>
+                            <img src={facebook} alt="Facebook" className="w-6 h-6"/>
+                        </button>
                     </div>
                 </form>
             </div>
