@@ -21,9 +21,12 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const jsonData = JSON.stringify(formData);
+
     try {
-      const { data } = await instance.post('/auth/register', formData);
-      if (data) {
+      const response = await instance.post('/auth/sign-up', jsonData);
+      if (response.status === 202) {
         navigate('/login');
       }
     } catch (error) {
