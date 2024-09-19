@@ -13,11 +13,11 @@ function Servicios() {
                 <div className="w-full lg:w-1/2 lg:pl-2 text-left">
                     <p>
                         En ArregloYa, puedes encontrar una amplia gama de profesionales en
-                        diferentes campos y especializadades.
+                        diferentes campos y especialidades.
                     </p>
                     <br />
                     <p>
-                        Podés encontrar profesionales para soluciones de alabañileria,
+                        Podés encontrar profesionales para soluciones de albañileria,
                         plomería, carpintería 
                     </p>
                     <br />
