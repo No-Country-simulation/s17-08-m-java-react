@@ -6,6 +6,7 @@ import com.nocountry.server.model.dto.ServiceRequestDto;
 import com.nocountry.server.model.entity.Professional;
 import com.nocountry.server.model.entity.ServiceRequest;
 import com.nocountry.server.model.entity.enums.ServiceStatus;
+import com.nocountry.server.repository.ProfessionalRepository;
 import com.nocountry.server.repository.ServiceRequestRepository;
 import com.nocountry.server.service.IServiceRequestService;
 import jakarta.transaction.Transactional;
@@ -22,13 +23,13 @@ import java.util.Optional;
 public class ServiceRequestService implements IServiceRequestService {
 
     private final ServiceRequestRepository requestRepository;
-    private final ProfessionalService professionalService;
+    private final ProfessionalRepository professionalRepository;
 
     @Override
     @Transactional
     public boolean createRequest(ServiceRequestDto dto) {
         try{
-            Professional professional = professionalService.findById(dto.getProfessionalId());
+            Professional professional = professionalRepository.findById(dto.getProfessionalId()).orElseThrow();
             ServiceRequest request = new ServiceRequest();
             request.setCreatedAt(dto.getCreatedAt());
             request.setDescription(dto.getDescription());
@@ -55,7 +56,7 @@ public class ServiceRequestService implements IServiceRequestService {
 
     @Override
     public List<ServiceRequest> findAllRequestByProfessionalId(Long professionalId) {
-        if (professionalService.existsProfessionalById(professionalId)) {
+        if (professionalRepository.existsById(professionalId)) {
             return requestRepository.findByProfessionalId(professionalId);
         }
         throw new ProfessionalNotFoundException("The professional with id " + professionalId + " doesn't exist");
@@ -67,13 +68,13 @@ public class ServiceRequestService implements IServiceRequestService {
     public ServiceRequest updateRequest(ServiceRequestDto dto, Long id) {
         try{
             ServiceRequest request = findRequestById(id);
-            Professional professional = professionalService.findById(dto.getProfessionalId());
+            Professional professional = professionalRepository.findById(dto.getProfessionalId()).orElseThrow();
 
             request.setCreatedAt(dto.getCreatedAt());
             request.setDescription(dto.getDescription());
             request.setProfessional(professional);
-            //the part below need to be modified to control what kind of state can be sent from frontEnd
-            //request.setState();
+//            the part below need to be modified to control what kind of state can be sent from frontEnd
+//            request.setState();
             request.setTitle(dto.getTitle());
 
             log.info("Service request updated, service request id: {}", id );

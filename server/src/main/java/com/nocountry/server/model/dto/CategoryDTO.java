@@ -1,12 +1,16 @@
 package com.nocountry.server.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class CategoryDTO {
+@Builder
+public class CategoryDTO implements Serializable {
 
     @NotBlank(message = "The category id is mandatory")
     private Long id;

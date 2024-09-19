@@ -46,7 +46,7 @@ public class EmailServiceImpl implements IEmailService {
             helper.setTo(toUser);
             helper.setSubject(subject);
 
-            String template = templateEngine.process(emailTemplate.name(), context);
+            String template = templateEngine.process(emailTemplate.getTemplateName(), context);
 
             helper.setText(template, true);
 
